@@ -25,7 +25,7 @@ const routes = [
  },
  {
    path:'*',
-   redirect:'/home'
+   redirect:'/list'
  }
 ]
 
