@@ -3,8 +3,11 @@
     <div class="drawer_list" v-for="(item,index) in deamerList" :key="index">
       <div class="drawer_title">{{item.GroupName}}</div>
       <div v-for="(ele,ind) in item.GroupList" :key="ind" class="drawer_ele">
-        <img :src="ele.Picture" @click="getList(item)"   />
-        <span>{{ele.AliasName}}</span>
+        <img v-lazy="ele.Picture" @click="getList(item)" />
+        <div class="title">
+          <p>{{ele.AliasName}}</p>
+          <span>{{ele.DealerPrice}}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -20,16 +23,17 @@ export default {
   },
   computed: {
     ...mapState(["deamerList"])
-    
   },
-  methods: {  
-     ...mapMutations(['setFlag']),
-      getList(item){
-      this.$router.push({path:'/message',query:{item}})
-      this.setFlag(false)
-      }
+  methods: {
+    ...mapMutations(["setFlag"]),
+    getList(item) {
+      this.$router.push({ path: "/message", query: { item } });
+      this.setFlag(false);
+    }
   },
   created() {
+
+    
   },
   mounted() {}
 };
@@ -38,7 +42,7 @@ export default {
 .drawer_wrapp {
   position: fixed;
   top: 0;
-  left: 30%;
+  left: 25%;
   bottom: 0;
   right: 0;
   background: white;
@@ -63,13 +67,24 @@ export default {
     width: 90px;
     height: 70px;
   }
-  span {
+  .title {
     flex: 1;
-    line-height: 50px;
-    margin-left: 20px;
+    p {
+      line-height: 25px;
+      margin-left: 10px;
+      font-size: 14px;
+    
+    }
+    span{
+      display: block;
+      line-height: 25px;
+      width: 100%;
+      text-align: center;
+      color: red;
+    }
   }
-  &:last-child{
-      border: none;
+  &:last-child {
+    border: none;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="list_item">
     <div class="list_title">{{item.title}}</div>
     <div v-for="(ele, index) in item.children" :key="index" class="list_ele">
-      <img :src="ele.CoverPhoto"  @click="mess(ele.MasterID)" />
+      <img v-lazy="ele.CoverPhoto"  @click="mess(ele.MasterID)" />
       <span>{{ele.Name}}</span>
     </div>
   </div>
@@ -48,11 +48,12 @@ export default {
   padding-left: 20px;
 }
 .list_ele {
-  width: 100%;
+  width: 90%;
   height: 80px;
   display: flex;
   padding: 15px 20px;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #ccc;
+  margin: 0 5%;
   &:last-child {
     border: none;
   }
