@@ -4,6 +4,9 @@
     <NavList :arr="arr" @Parent_jump="jumps"></NavList>
       <!-- 列表渲染组件 -->
     <ListCode :id="item.title" v-for="(item,index) in list" :key="index" :item="item"></ListCode>
+     
+     <!-- 抽屉组件 -->
+     <DrawerCode v-if="drawerflag" ></DrawerCode>
   </div>
 </template>
 <script>
@@ -12,13 +15,20 @@ import ListCode from "@/components/list_item/";
 
 // 导航列表
 import NavList from "@/components/nav_list/";
-import { filter } from 'minimatch';
+
+
+// 抽屉层
+import DrawerCode from '@/components/drawer_list/'
+import { mapState } from 'vuex';
+
+
 
 export default {
   props: {},
   components: {
     ListCode,
-    NavList
+    NavList,
+    DrawerCode
   },
   data() {
     return {
@@ -26,7 +36,9 @@ export default {
       arr: []
     };
   },
-  computed: {},
+  computed: {
+    ...mapState(['drawerflag'])
+  },
   methods: {
     jumps(item) {
       console.log(item);
@@ -37,9 +49,8 @@ export default {
       this.$http
         .get("https://baojia.chelun.com/v2-car-getMasterBrandList.html")
         .then(res => {
-          console.log(res);
           if (res.data.code === 1) {
-            console.log(res.data.msg);
+            console.log("全部数据",res.data.msg);
             this.setArr(res.data.data);
             this.setList(res.data.data);
           } else {
