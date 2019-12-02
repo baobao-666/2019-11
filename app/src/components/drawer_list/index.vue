@@ -72,7 +72,8 @@ export default {
     p {
       line-height: 25px;
       margin-left: 10px;
-      font-size: 14px;
+      color: #666;
+      font-size: 18px;
     
     }
     span{
@@ -81,6 +82,7 @@ export default {
       width: 100%;
       text-align: center;
       color: red;
+      font-size: 14px;
     }
   }
   &:last-child {
