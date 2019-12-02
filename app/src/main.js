@@ -4,7 +4,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
