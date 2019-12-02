@@ -3,7 +3,7 @@
     <div class="drawer_list" v-for="(item,index) in deamerList" :key="index">
       <div class="drawer_title">{{item.GroupName}}</div>
       <div v-for="(ele,ind) in item.GroupList" :key="ind" class="drawer_ele">
-        <img v-lazy="ele.Picture" @click="getList(item.GroupId)" />
+        <img v-lazy="ele.Picture" @click="getList(ele.SerialID)" />
         <div class="title">
           <p>{{ele.AliasName}}</p>
           <span>{{ele.DealerPrice}}</span>
@@ -27,6 +27,8 @@ export default {
   methods: {
     ...mapMutations(["setFlag"]),
     getList(id) {
+      console.log(id);
+      
       this.$router.push({ path: "/message", query: { id } });
       this.setFlag(false);
     }
@@ -35,7 +37,10 @@ export default {
 
     
   },
-  mounted() {}
+  mounted() {
+    console.log(this.deamerList);
+    
+  }
 };
 </script>
 <style scoped lang="scss">

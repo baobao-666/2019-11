@@ -11,6 +11,8 @@ export default new Vuex.Store({
   },
   mutations: {
     setList(state, data) {
+      console.log(data);
+      
       state.deamerList=data
     },
     setFlag(state,data){
