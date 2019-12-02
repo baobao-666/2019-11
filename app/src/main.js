@@ -1,9 +1,10 @@
+import './app.css'
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import './app.css'
+
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {

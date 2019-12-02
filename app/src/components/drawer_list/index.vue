@@ -28,7 +28,6 @@ export default {
     ...mapMutations(["setFlag"]),
     getList(id) {
       console.log(id);
-      
       this.$router.push({ path: "/message", query: { id } });
       this.setFlag(false);
     }

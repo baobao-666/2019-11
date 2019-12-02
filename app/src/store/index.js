@@ -1,8 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
+import creareLogger from 'vuex/dist/logger';
+import home from './modules/home'
 
 Vue.use(Vuex);
+
 
 export default new Vuex.Store({
   state: {
@@ -32,5 +35,8 @@ export default new Vuex.Store({
       });
     }
   },
-  modules: {}
+  modules: {
+    home
+  },
+  plugins:[creareLogger()]
 });
