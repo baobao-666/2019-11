@@ -2,149 +2,88 @@
   <div class="mess-page">
     <header>
       <div class="img">
-              <img :src="this.img" alt="">
+        <img :src="this.titImg" alt="">
+        <span>{{list&&list.pic_group_count}}</span>
       </div>
       <div class="text">
         <div class="left">
-          <p>21.22-33.8万</p>
-          <p>指导价26.68-40.17万</p>
+          <p>{{list.market_attribute&&list.market_attribute.dealer_price}}</p>
+          <p>指导价{{list.market_attribute&&list.market_attribute.official_refer_price}}</p>
         </div>
         <div class="right">
-          <span>询问低价</span>
+          <span @click="jump(list.SerialID)">{{list&&list.BottomEntranceTitle}}</span>
         </div>
       </div>
     </header>
+
     <div class="car-list">
       <div class="c-type">
         <span>全部</span>
         <span>2019</span>
+  
       </div>
-      <div class="item" v-for="(item,index) in list" :key="index">
-        <p>{{item.exhaust_str}}/{{item.max_power_str}} 涡轮增压</p>
+
+      <div class="item" v-for="(item, index) in list.list" :key="index">
+        <p>{{ item.exhaust_str }}/{{ item.max_power_str }} 涡轮增压</p>
         <ul>
           <li class="line">
-            <p class="one">{{item.car_name}}</p>
-            <p class="two">{{item.trans_type}}</p>
+            <p class="one">{{ item.car_name }}</p>
+            <p class="two">{{ item.trans_type }}</p>
             <p class="three">
-              <span>指导价{{item.max_power}}万</span>
-              <span>{{item.max_power_str}}万起</span>
+              <span>指导价{{ item.market_attribute.official_refer_price }}</span>
+              <span>{{ item.market_attribute.dealer_price }}起</span>
             </p>
             <button>询问底价</button>
           </li>
         </ul>
       </div>
-      <!-- <div class="item">
-        <p>1.4L/110kW 涡轮增压</p>
-        <ul>
-          <li class="line">
-            <p class="one">2019款 35 TFSI 进取版 国V</p>
-            <p class="two">150马力7档双离合</p>
-            <p class="three">
-              <span>指导价28.68万</span>
-              <span>20.98万起</span>
-            </p>
-            <button>询问底价</button>
-          </li>
-        </ul>
-      </div>
-      <div class="item">
-        <p>1.4L/110kW 涡轮增压</p>
-        <ul>
-          <li class="line">
-            <p class="one">2019款 35 TFSI 进取版 国V</p>
-            <p class="two">150马力7档双离合</p>
-            <p class="three">
-              <span>指导价28.68万</span>
-              <span>20.98万起</span>
-            </p>
-            <button>询问底价</button>
-          </li>
-        </ul>
-      </div>
-      <div class="item">
-        <p>1.4L/110kW 涡轮增压</p>
-        <ul>
-          <li class="line">
-            <p class="one">2019款 35 TFSI 进取版 国V</p>
-            <p class="two">150马力7档双离合</p>
-            <p class="three">
-              <span>指导价28.68万</span>
-              <span>20.98万起</span>
-            </p>
-            <button>询问底价</button>
-          </li>
-        </ul>
-      </div>
-      <div class="item">
-        <p>1.4L/110kW 涡轮增压</p>
-        <ul>
-          <li class="line">
-            <p class="one">2019款 35 TFSI 进取版 国V</p>
-            <p class="two">150马力7档双离合</p>
-            <p class="three">
-              <span>指导价28.68万</span>
-              <span>20.98万起</span>
-            </p>
-            <button>询问底价</button>
-          </li>
-        </ul>
-      </div>
-      <div class="item">
-        <p>1.4L/110kW 涡轮增压</p>
-        <ul>
-          <li class="line">
-            <p class="one">2019款 35 TFSI 进取版 国V</p>
-            <p class="two">150马力7档双离合</p>
-            <p class="three">
-              <span>指导价28.68万</span>
-              <span>20.98万起</span>
-            </p>
-            <button>询问底价</button>
-          </li>
-        </ul>
-      </div> -->
     </div>
-    <div class="foot">
+    <div class="foot" @click="jump(id)">
       <p>询问低价</p>
       <p>本地经销商为你报价</p>
     </div>
   </div>
 </template>
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   props: {},
   components: {},
   data() {
     return {
-      // 顶部图片
-      img:'',
       //全部数据
-      list:[]
+      list: [],
+      //头部图片
+      titImg: "",
+    
+
     };
   },
   computed: {},
   methods: {
-      getlist(){
-        axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html',{params:{SerialID:2593}}).then(res=>{
-          console.log(res)
-                  if(res.data.code===1){
-                      this.title=res.data.data.market_attribute
-                      this.list=res.data.data.list;
-                      this.img=res.data.data.CoverPhoto
-                      console.log(res.data.data.list)
-                      console.log(res.data.data.CoverPhoto)
-           }   
+    getlist() {
+      axios
+        .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
+          params: { SerialID: this.$route.query.id }
         })
+        .then(res => {
+          console.log(res.data.data);
+          if (res.data.code === 1) {
+            this.titImg = res.data.data.Picture
+            this.list = res.data.data
+          
+          }
+        });
+    },
+    jump(id){
+      this.$router.push({path:'/home',query:{id}})
     }
   },
   created() {
-      this.getlist()
+    this.getlist();
   },
-  mounted() {
-  
-  }
+  mounted() {}
 };
 </script>
 <style scoped lang="scss">
@@ -153,6 +92,8 @@ export default {
   height: 100%;
   background: #f2f2f2;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .mess-page header {
   width: 100%;
@@ -160,10 +101,20 @@ export default {
   background: #fff;
   .img {
     height: 176px;
-    background: cornflowerblue;
-    img{
+    // background: cornflowerblue;
+    position: relative;
+    img {
       width: 100%;
       height: 100%;
+    }
+    span{
+      position: absolute;
+      bottom:5px;
+      right:10px;
+      background: rgba(0,0,0,.5);
+      border-radius: 10px;
+      color:#fff;
+      padding:5px;
     }
   }
   .text {
@@ -209,6 +160,7 @@ export default {
 .mess-page .car-list {
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   .c-type {
