@@ -12,9 +12,9 @@ const routes = [
    children:[]
  },
  {
-  path:'/home',
+  path:'/carthome',
   name:'home',
-  component:()=>import('../views/home/'),
+  component:()=>import('../views/carthome'),
   children:[]
  },
  {

@@ -77,7 +77,7 @@ export default {
         });
     },
     jump(id){
-      this.$router.push({path:'/home',query:{id}})
+      this.$router.push({path:'/carthome',query:{id}})
     }
   },
   created() {
