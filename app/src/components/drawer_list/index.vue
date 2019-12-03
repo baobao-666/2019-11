@@ -22,7 +22,9 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["deamerList"])
+    ...mapState({
+      deamerList:state=>state.home.deamerList
+    })
   },
   methods: {
     ...mapMutations(["setFlag"]),

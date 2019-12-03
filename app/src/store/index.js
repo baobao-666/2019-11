@@ -9,18 +9,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    deamerList: [],
-    drawerflag:false
+    deamerList: []
   },
   mutations: {
     setList(state, data) {
-      console.log(data);
-      
       state.deamerList=data
     },
-    setFlag(state,data){
-      state.drawerflag=data
-    }
+  
   },
   actions: {
     getdeam({ commit }, id) {

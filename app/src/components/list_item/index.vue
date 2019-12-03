@@ -26,10 +26,14 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions(['getdeam']),
-    ...mapMutations(['setFlag']),
+    ...mapActions({
+      getdrawerList: "home/getdrawerList"
+    }),
+    ...mapMutations({
+      setFlag:"home/setFlag"
+    }),
    mess(id){
-        this.getdeam(id)
+        this. getdrawerList(id)
         this.setFlag(true)
     }
   },
