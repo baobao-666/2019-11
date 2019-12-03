@@ -6,30 +6,44 @@
     </div>
     <div class="city_item">
       <div class="province">省份</div>
-      <div class="item_e" @click="cityTo(item.CityID)" v-for=" (item,index) in cityList"  :key="index" >
+      <div class="item_e" @click="cityTo(item.CityID)" v-for="(item,index) in cityList"  :key="index">
           {{item.CityName}}
           <span>></span>
           </div>
     </div>
+    <DrawerCity v-if="cityFlag" ></DrawerCity>
   </div>
 </template>
 
 <script>
+
+// 列表抽屉
+import  DrawerCity from "../drawer_city/"
+
+
 import { mapActions, mapState } from 'vuex';
 export default {
+  components:{
+     DrawerCity
+  },
   computed:{
 ...mapState({
-  cityList: state=>state.mess.cityList,
-   automatic:state=>state.mess.automatic
+   cityList: state=>state.mess.cityList,
+   automatic:state=>state.mess.automatic,
+   cityFlag:state=>state.mess.cityFlag
 })
   },
   methods: {
     ...mapActions({
-      getcityList:'mess/getcityList'
-    })
+      getcityList:'mess/getcityList',
+      getcityOneList:'mess/getcityOneList'
+    }),
+    cityTo(id){
+       this.getcityOneList(id)
+    }
   },
   created(){
- this.getcityList()
+      this.getcityList();
   }
 };
 </script>
@@ -42,15 +56,16 @@ export default {
   right: 0;
   overflow-y: scroll;
   z-index: 88;
+  background: #fff;
 }
 @mixin title(){
-     font-size: 14px;
+     font-size: .28rem;
      background: #eee;
-     padding: 2px 0 2px 10px;
+     padding: .2rem 0 .2rem .10rem;
 }
 @mixin List(){
         width: 100%;
-        line-height: 50px;
+        line-height: .7rem;
         padding-left: 20px;
 }
 .defaut_city{
@@ -71,7 +86,7 @@ export default {
       position: relative;
       width: 95%;
       margin: 0 2.5%;
-      border-bottom: 1px solid #ccc;
+      border-bottom: .1px solid #ccc;
       font-size: 16px;
       &:last-child{
           border: none;

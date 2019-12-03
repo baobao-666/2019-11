@@ -76,10 +76,11 @@ export default {
         params: { SerialID: this.$route.query.id }
       })
       .then(res => {
-        console.log(res.data.data);
+        console.log(res);
         if (res.data.code === 1) {
           this.titImg = res.data.data.Picture;
           this.list = res.data.data;
+          console.log(this.list);
         }
       });
     // console.log(this.$route.query.id)
