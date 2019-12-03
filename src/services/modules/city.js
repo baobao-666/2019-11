@@ -1,5 +1,5 @@
 import request from '@/utils/request'
 
-export let getdrawerList=()=>{
+export let getcityList=()=>{
     return request('/v1-city-alllist.html')
 }

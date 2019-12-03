@@ -6,7 +6,7 @@
     </div>
     <div class="city_item">
       <div class="province">省份</div>
-      <div class="item_e" @click="cityTo(item.CityID)" v-for=" (item,index) in macticList"  :key="index" >
+      <div class="item_e" @click="cityTo(item.CityID)" v-for=" (item,index) in cityList"  :key="index" >
           {{item.CityName}}
           <span>></span>
           </div>
@@ -15,35 +15,21 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
-  data() {
-    return {
-        automatic:"北京",
-        macticList:[]
-    };
+  computed:{
+...mapState({
+  cityList: state=>state.mess.cityList,
+   automatic:state=>state.mess.automatic
+})
   },
   methods: {
-    getList() {
-      this.$http
-        .get("https://baojia.chelun.com/v1-city-alllist.html")
-        .then(res => {
-          console.log(res);
-          if(res.data.code===1){
-              console.log(res.data.msg);
-              this. macticList=res.data.data
-          }
-        });
-    },
-    cityTo(id){
-      console.log(id);
-    //   this.$http.get('https://baojia.chelun.com/v1-city-alllist.html')
-    }
+    ...mapActions({
+      getcityList:'mess/getcityList'
+    })
   },
   created(){
- this.getList()
-  },
-  mounted() {
-     
+ this.getcityList()
   }
 };
 </script>
