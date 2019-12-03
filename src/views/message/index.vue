@@ -64,7 +64,7 @@ export default {
     getlist() {
       axios
         .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
-          params: { SerialID: this.$route.query.id }
+          params: { SerialID: this.$route.query.id}
         })
         .then(res => {
           console.log(res.data.data);
@@ -75,6 +75,7 @@ export default {
         });
     },
     jump(id) {
+      console.log("id...",id)
       this.$router.push({ path: "/carthome", query: { id } });
     }
   },

@@ -6,10 +6,12 @@
 
     <div class="count">
       <div class="hover">
-        <div class="img"></div>
+        <div class="img">
+          <img :src="this.titImg" alt="">
+        </div>
         <div class="text">
-          <p>阿尔法·罗密欧Stelvio</p>
-          <p>2019款 2.0T 280HP 豪华版 Black Package</p>
+          <p>{{list&&list.BrandName}}-{{list&&list.AliasName}}</p>
+          <p>{{list.list&&list.list[0].car_name}}</p>
         </div>
       </div>
 
@@ -38,8 +40,6 @@
       <div class="foot">
         <p>选择报价经销商</p>
       </div>
-
-
     </div>
 
     <button @click="alerts">点击渲染城市列表</button>
@@ -50,6 +50,7 @@
 </template>
 <script>
 import CityCode from "@/components/city_list/";
+import axios from 'axios'
 
 export default {
   props: {},
@@ -58,7 +59,9 @@ export default {
   },
   data() {
     return {
-      block: false
+      block: false,
+      list:[],
+      titImg:''
     };
   },
   computed: {},
@@ -68,8 +71,18 @@ export default {
     }
   },
   created() {
-
-    console.log(this.$route.query.id)
+    
+    this.$http.get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
+        params: { SerialID: this.$route.query.id }
+      })
+      .then(res => {
+        console.log(res.data.data);
+        if (res.data.code === 1) {
+          this.titImg = res.data.data.Picture;
+          this.list = res.data.data;
+        }
+      });
+    // console.log(this.$route.query.id)
   },
   mounted() {}
 };
@@ -105,6 +118,11 @@ header {
     .img {
       width: 40%;
       height: 100%;
+      // overflow: hidden;
+      img{
+        width: 100%;
+        height: 80px;
+      }
     }
     .text {
       width: 60%;
@@ -171,8 +189,8 @@ header {
     height: 25px;
     padding: 0 10px;
     font-size: 16px;
-    background:#eee;
-    color:#666;
+    background: #eee;
+    color: #666;
     line-height: 25px;
   }
 }
