@@ -66,7 +66,7 @@ export default {
   width: 100%;
   line-height: .7rem;
   background: #f0f0f0;
-  padding-left: 20px;
+  padding-left: .4rem;
 }
 .drawer_ele {
   width: 100%;
@@ -94,9 +94,6 @@ export default {
       color: red;
       font-size: .26rem;
     }
-  }
-  &:last-child {
-    border: none;
   }
 }
 </style>
