@@ -13,16 +13,9 @@ const  mutations={
          state.allList=  payload
       },
       setArr(state,data) {
-        let arr = ["#"];
-        data.forEach((item, index) => {
-          let flag = arr.findIndex((ele, index) => {
-            return ele === item.Spelling.slice(0, 1);
-          });
-          if (flag === -1) {
-            arr.push(item.Spelling.slice(0, 1));
-          }
-        });
-        state.arr = arr;
+        state.arr = ['#'].concat([...new Set(data.map(item=>{
+          return item.Spelling[0];
+        }))])
       },
       setList(state,data) {
         let newarr = state.arr;

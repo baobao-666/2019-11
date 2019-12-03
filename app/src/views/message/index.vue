@@ -1,8 +1,6 @@
 <template>
   <div class="mess-page">
- 
-
-    <div class="car-list">
+    <header>
       <div class="img">
         <img :src="this.titImg" alt="">
         <span>{{list&&list.pic_group_count}}</span>
@@ -16,6 +14,9 @@
           <span @click="jump(list.SerialID)">{{list&&list.BottomEntranceTitle}}</span>
         </div>
       </div>
+    </header>
+
+    <div class="car-list">
       <div class="c-type">
         <span>全部</span>
         <span>2019</span>
@@ -86,10 +87,6 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-// @function rem($font){
-//   @return font / 16
-// }
-
 .mess-page {
   width: 100%;
   height: 100%;
@@ -100,96 +97,10 @@ export default {
 }
 .mess-page header {
   width: 100%;
-  height: 8rem;
+  height: 256px;
   background: #fff;
-  
-}
-.mess-page .car-list {
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  .c-type {
-    width: 100%;
-    background: #fff;
-    margin: 10px 0;
-    height: 1.55rem;
-    padding: 10px 0px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 18px;
-    & span:first-child {
-      margin: 0 20px 0 15px;
-      color: skyblue;
-    }
-  }
-  .item {
-    width: 100%;
-    height: 4.8rem;
-    background: #fff;
-    & > p {
-      height: 0.43rem;
-      padding: 0 10px;
-      // text-align: center;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      color: #999;
-      font-size: 14px;
-      background: #f4f4f4;
-    }
-    ul {
-      width: 100%;
-      height: 2.4rem;
-      //   background: lime;
-
-      .line > .one {
-        height:0.6rem;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin: 0 10px;
-      }
-      .line > .two {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 0.5rem;
-        color: #999;
-        padding: 0 10px;
-      }
-      .line > .three {
-        height: 0.5rem;
-        padding: 0 10px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        // font-size: 14px;
-        color: #999;
-        & > span:last-child {
-          color: Red;
-          margin-left: 10px;
-        }
-      }
-      button {
-        height:.8rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        outline: none;
-        color: skyblue;
-        border: 0;
-        width: 100%;
-        font-size: 18px;
-        background: #fff;
-        border-top: 1px solid #ccc;
-      }
-    }
-  }
   .img {
-    height: 5.5rem;
+    height: 176px;
     // background: cornflowerblue;
     position: relative;
     img {
@@ -198,27 +109,27 @@ export default {
     }
     span{
       position: absolute;
-      bottom:0.15rem;
-      right:0.31rem;
+      bottom:5px;
+      right:10px;
       background: rgba(0,0,0,.5);
-      border-radius: 0.31rem;
+      border-radius: 10px;
       color:#fff;
-      padding:0.15rem;
+      padding:5px;
     }
   }
   .text {
-    height: 1.2rem;
+    height: 80px;
     display: flex;
-     line-height: 0.55rem;
     .left {
       width: 50%;
-      height: 1.2rem;
+      height: 80px;
       display: flex;
       flex-direction: column;
       text-align: center;
+      line-height: 35px;
       & > p:first-child {
         color: red;
-        // font-size: 18px;
+        font-size: 18px;
         font-weight: 900;
       }
       & > p:last-child {
@@ -228,12 +139,10 @@ export default {
     }
     .right {
       width: 50%;
-      height:  1.2rem;
+      height: 80px;
       // margin:10px;
       // line-height: 80px;
       // text-align: center;
-      // line-height: 1.1rem;
-
       display: flex;
       justify-content: center;
       align-items: center;
@@ -248,12 +157,98 @@ export default {
     }
   }
 }
+.mess-page .car-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  .c-type {
+    width: 100%;
+    background: #fff;
+    margin: 10px 0;
+    height: 49.06px;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+    & span:first-child {
+      margin: 0 20px 0 15px;
+      color: skyblue;
+    }
+  }
+  .item {
+    width: 100%;
+    height: 154px;
+    background: #fff;
+    & > p {
+      height: 26.66px;
+      padding: 0 10px;
+      // text-align: center;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: #999;
+      font-size: 14px;
+      background: #f4f4f4;
+    }
+    ul {
+      width: 100%;
+      height: 127.44px;
+      //   background: lime;
+
+      .line > .one {
+        height: 39.45px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0 10px;
+      }
+      .line > .two {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 19px;
+        color: #999;
+
+        padding: 0 10px;
+      }
+      .line > .three {
+        height: 26.33px;
+        padding: 0 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 14px;
+        color: #999;
+        & > span:last-child {
+          color: Red;
+          margin-left: 10px;
+        }
+      }
+      button {
+        height: 42.66px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        color: skyblue;
+        border: 0;
+        width: 100%;
+        font-size: 18px;
+        background: #fff;
+        border-top: 1px solid #ccc;
+      }
+    }
+  }
+}
 .foot {
   width: 100%;
-  height:0.8rem;
-  // position: fixed;
-  // bottom: 0;
-  // left: 0;
+  height: 53.33px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;

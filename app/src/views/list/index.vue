@@ -1,17 +1,20 @@
 <template>
-  <div class="list-page">
-    <!--导航组件   arr 传入数据 默认英文26 事件传出点击的值  -->
-    <NavList :arr="arr" @Parent_jump="jumps"></NavList>
+  <div class="wrap">
     <!-- 列表渲染组件 -->
-    <!-- {{Alllist.length}} -->
-    <!-- <div v-for="(item,index) in Alllist" :key="index">{{item}}</div> -->
-    <ListCode :id="item.title" v-for="(item,index) in list" :key="index" :item="item"></ListCode>
+    <div class="list-page">
+      <!-- {{Alllist.length}} -->
+      <!-- <div v-for="(item,index) in Alllist" :key="index">{{item}}</div> -->
+      <ListCode :id="item.title" v-for="(item,index) in list" :key="index" :item="item"></ListCode>
+    </div>
 
     <!-- 抽屉组件 -->
     <transition name="drawer">
       <DrawerCode v-if="drawerflag"></DrawerCode>
     </transition>
-  </div>
+
+     <!--导航组件   arr 传入数据 默认英文26 事件传出点击的值  -->
+    <NavList :arr="arr" @Parent_jump="jumps"></NavList>
+  </div> 
 </template>
 <script>
 // 列表每一项  组件
@@ -69,6 +72,9 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.wrap{
+  height: 100%;
+}
 .list-page {
   width: 100%;
   height: 100%;

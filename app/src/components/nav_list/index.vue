@@ -1,6 +1,11 @@
 <template>
-  <div class="nav_list">
-    <div v-for="(item,index) in arr" @click="jump(item)"  :key="index" class="nav_item">{{item}}</div>
+  <div class="nav_list" 
+    ref="container"
+    @touchstart="touchStart"
+    @touchmove="touchMove"
+    @touchend="touchEnd"
+  >
+    <div v-for="(item,index) in arr" @click="jump(item)" :key="index" class="nav_item">{{item}}</div>
   </div>
 </template>
 <script>
@@ -9,58 +14,51 @@ export default {
     arr: {
       type: Array,
       default() {
-        return [
-          "#",
-          "A",
-          "B",
-          "C",
-          "D",
-          "F",
-          "G",
-          "H",
-          "I",
-          "J",
-          "K",
-          "L",
-          "M",
-          "N",
-          "O",
-          "P",
-          "Q",
-          "R",
-          "S",
-          "T",
-          "U",
-          "V",
-          "W",
-          "X",
-          "Y",
-          "Z"
-        ];
+        return [];
       }
     }
   },
-  components: {},
-  data() {
-    return {};
+  watch: {
+    arr: function(){
+      this.$nextTick(()=>{
+        this.offsetTop = (window.innerHeight - this.$refs.container.offsetHeight)/2;
+        console.log('offsetTop...', this.offsetTop)
+      })
+    }
   },
-  computed: {},
   methods: {
-      jump(item){
-         this.$emit('Parent_jump',item)
-      }
+    jump(item){
+        this.$emit('Parent_jump',item)
+    },
+    touchStart(e){
+      let y = e.touches[0].pageY - this.offsetTop;
+      let index = Math.floor(y/18);
+      console.log('start...', e.touches[0], this.arr[index]);
+    },
+    touchMove(e){
+      let y = e.touches[0].pageY - this.offsetTop;
+      let index = Math.floor(y/18);
+      // 处理边界
+      index<1?index=1:index>this.arr.length-1?index=this.arr.length-1:null;
+      this.$emit('Parent_jump', this.arr[index]);
+      console.log('start...', this.arr[index]);
+    },
+    touchEnd(e){
+     
+    }
   },
-  created() {},
-  mounted() {}
+
 };
 </script>
+
 <style scoped lang="scss">
 .nav_list {
   width: 30px;
   display: flex;
   flex-direction: column;
   position: fixed;
-  top:20%;
+  top:50%;
+  transform: translateY(-50%);
   right: 5%;
 }
 .nav_item {
