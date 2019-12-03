@@ -18,7 +18,7 @@ html{
    font-size: calc(100vw/750*100);
 }
 body{
-  font-size: .32rem;
+  font-size:.32rem ;
 }
 *{
   margin: 0;
