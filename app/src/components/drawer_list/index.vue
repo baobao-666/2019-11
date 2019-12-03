@@ -27,7 +27,9 @@ export default {
     })
   },
   methods: {
-    ...mapMutations(["setFlag"]),
+    ...mapMutations({
+      setFlag:'home/setFlag'
+    }),
     getList(id) {
       console.log(id);
       this.$router.push({ path: "/message", query: { id } });
@@ -39,8 +41,6 @@ export default {
     
   },
   mounted() {
-    console.log(this.deamerList);
-    
   }
 };
 </script>

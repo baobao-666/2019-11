@@ -24,6 +24,28 @@ const routes = [
   children:[]
  },
  {
+   path:'/cartmess',
+   name:'cartmess',
+   component:()=>import('../views/cartmess/'),
+   children:[
+     {
+       path:'/cartmess/cartcolor',
+       name:'cartcolor',
+       component:()=>import('../views/cartmess/cartColo/'),
+       children:[]
+     },{
+      path:'/cartmess/cartstyle',
+      name:'cartcolor',
+      component:()=>import('../views/cartmess/cartStyle/'),
+      children:[]
+     },{
+       path:'/cartmess',
+       redirect:'/cartmess/cartcolor'
+     }
+   ]
+ },
+
+ {
    path:'*',
    redirect:'/list'
  }
