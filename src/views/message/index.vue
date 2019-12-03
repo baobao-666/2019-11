@@ -2,9 +2,10 @@
   <div class="mess-page">
     <header>
       <div class="img">
-        <img :src="this.titImg" alt="">
+        <img :src="this.titImg" alt />
         <span>{{list&&list.pic_group_count}}</span>
       </div>
+
       <div class="text">
         <div class="left">
           <p>{{list.market_attribute&&list.market_attribute.dealer_price}}</p>
@@ -14,13 +15,12 @@
           <span @click="jump(list.SerialID)">{{list&&list.BottomEntranceTitle}}</span>
         </div>
       </div>
-    </header>
+   
 
     <div class="car-list">
       <div class="c-type">
         <span>全部</span>
         <span>2019</span>
-  
       </div>
 
       <div class="item" v-for="(item, index) in list.list" :key="index">
@@ -38,6 +38,7 @@
         </ul>
       </div>
     </div>
+ </header>
     <div class="foot" @click="jump(id)">
       <p>询问低价</p>
       <p>本地经销商为你报价</p>
@@ -55,9 +56,7 @@ export default {
       //全部数据
       list: [],
       //头部图片
-      titImg: "",
-    
-
+      titImg: ""
     };
   },
   computed: {},
@@ -70,14 +69,13 @@ export default {
         .then(res => {
           console.log(res.data.data);
           if (res.data.code === 1) {
-            this.titImg = res.data.data.Picture
-            this.list = res.data.data
-          
+            this.titImg = res.data.data.Picture;
+            this.list = res.data.data;
           }
         });
     },
-    jump(id){
-      this.$router.push({path:'/carthome',query:{id}})
+    jump(id) {
+      this.$router.push({ path: "/carthome", query: { id } });
     }
   },
   created() {
@@ -91,30 +89,35 @@ export default {
   width: 100%;
   height: 100%;
   background: #f2f2f2;
-  position: relative;
   display: flex;
   flex-direction: column;
 }
 .mess-page header {
   width: 100%;
-  height: 256px;
+  height: 100%;
+  // overflow-y: scroll;
+  overflow: scroll;
   background: #fff;
+
   .img {
-    height: 176px;
+    width: 100%;
+    height: 166px;
     // background: cornflowerblue;
     position: relative;
     img {
       width: 100%;
       height: 100%;
+      // top:50%;
+    // transform: translateY(-50%)
     }
-    span{
+    span {
       position: absolute;
-      bottom:5px;
-      right:10px;
-      background: rgba(0,0,0,.5);
+      bottom: 5px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.5);
       border-radius: 10px;
-      color:#fff;
-      padding:5px;
+      color: #fff;
+      padding: 5px;
     }
   }
   .text {
@@ -160,7 +163,7 @@ export default {
 .mess-page .car-list {
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   display: flex;
   flex-direction: column;
   .c-type {
@@ -244,12 +247,9 @@ export default {
   }
 }
 .foot {
+  display: flex;
   width: 100%;
   height: 53.33px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
