@@ -1,6 +1,8 @@
 <template>
   <div class="mess-page">
-    <header>
+ 
+
+    <div class="car-list">
       <div class="img">
         <img :src="this.titImg" alt="">
         <span>{{list&&list.pic_group_count}}</span>
@@ -14,9 +16,6 @@
           <span @click="jump(list.SerialID)">{{list&&list.BottomEntranceTitle}}</span>
         </div>
       </div>
-    </header>
-
-    <div class="car-list">
       <div class="c-type">
         <span>全部</span>
         <span>2019</span>
@@ -103,65 +102,7 @@ export default {
   width: 100%;
   height: 8rem;
   background: #fff;
-  .img {
-    height: 5.5rem;
-    // background: cornflowerblue;
-    position: relative;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-    span{
-      position: absolute;
-      bottom:0.15rem;
-      right:0.31rem;
-      background: rgba(0,0,0,.5);
-      border-radius: 0.31rem;
-      color:#fff;
-      padding:0.15rem;
-    }
-  }
-  .text {
-    height: 1.2rem;
-    display: flex;
-     line-height: 0.55rem;
-    .left {
-      width: 50%;
-      height: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      & > p:first-child {
-        color: red;
-        // font-size: 18px;
-        font-weight: 900;
-      }
-      & > p:last-child {
-        font-size: 14px;
-        color: #ccc;
-      }
-    }
-    .right {
-      width: 50%;
-      height:  1.2rem;
-      // margin:10px;
-      // line-height: 80px;
-      // text-align: center;
-      // line-height: 1.1rem;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      span {
-        // width: 100%;
-        // height:100%;
-        padding: 8px 45px;
-        background: skyblue;
-        color: #fff;
-        border-radius: 5px;
-      }
-    }
-  }
+  
 }
 .mess-page .car-list {
   width: 100%;
@@ -247,13 +188,72 @@ export default {
       }
     }
   }
+  .img {
+    height: 5.5rem;
+    // background: cornflowerblue;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    span{
+      position: absolute;
+      bottom:0.15rem;
+      right:0.31rem;
+      background: rgba(0,0,0,.5);
+      border-radius: 0.31rem;
+      color:#fff;
+      padding:0.15rem;
+    }
+  }
+  .text {
+    height: 1.2rem;
+    display: flex;
+     line-height: 0.55rem;
+    .left {
+      width: 50%;
+      height: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      & > p:first-child {
+        color: red;
+        // font-size: 18px;
+        font-weight: 900;
+      }
+      & > p:last-child {
+        font-size: 14px;
+        color: #ccc;
+      }
+    }
+    .right {
+      width: 50%;
+      height:  1.2rem;
+      // margin:10px;
+      // line-height: 80px;
+      // text-align: center;
+      // line-height: 1.1rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        // width: 100%;
+        // height:100%;
+        padding: 8px 45px;
+        background: skyblue;
+        color: #fff;
+        border-radius: 5px;
+      }
+    }
+  }
 }
 .foot {
   width: 100%;
   height:0.8rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
