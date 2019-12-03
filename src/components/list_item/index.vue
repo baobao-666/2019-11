@@ -47,28 +47,28 @@ export default {
 }
 .list_title {
   width: 100%;
-  line-height: 30px;
+  line-height: .60rem;
   background: #f0f0f0;
-  padding-left: 20px;
+  padding-left: .40rem;
 }
 .list_ele {
   width: 90%;
-  height: 80px;
+  height: 1.4rem;
   display: flex;
-  padding: 15px 20px;
-  border-bottom: 1px solid #ccc;
+  padding: .30rem .40rem;
+  border-bottom: .01rem solid #ccc;
   margin: 0 5%;
   &:last-child {
     border: none;
   }
   img {
-    width: 50px;
-    height: 50px;
+    width: .8rem;
+    height: .8rem;
   }
   span {
     flex: 1;
-    line-height: 50px;
-    margin-left: 20px;
+    line-height: .80rem;
+    margin-left: .40rem;
   }
 }
 </style>

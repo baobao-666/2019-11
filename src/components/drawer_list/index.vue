@@ -1,5 +1,5 @@
 <template>
-  <div class="drawer_wrapp">
+  <div class="drawer_wrapp" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
     <div class="drawer_list" v-for="(item,index) in deamerList" :key="index">
       <div class="drawer_title">{{item.GroupName}}</div>
       <div v-for="(ele,ind) in item.GroupList" :key="ind" class="drawer_ele">
@@ -15,6 +15,7 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 
+
 export default {
   props: {},
   components: {},
@@ -23,24 +24,27 @@ export default {
   },
   computed: {
     ...mapState({
-      deamerList:state=>state.home.deamerList
+      deamerList: state => state.home.deamerList
     })
   },
   methods: {
     ...mapMutations({
-      setFlag:'home/setFlag'
+      setFlag: "home/setFlag"
     }),
     getList(id) {
       console.log(id);
       this.$router.push({ path: "/message", query: { id } });
       this.setFlag(false);
-    }
-  },
-  created() {
+    },
+    touchStart(e) {
+     console.log("开始移动");
+    },
+    touchMove(e) {
 
-    
-  },
-  mounted() {
+          },
+    touchEnd(e) {
+      console.log("移动结束");
+    }
   }
 };
 </script>
@@ -53,42 +57,42 @@ export default {
   right: 0;
   background: white;
   overflow-y: scroll;
+  z-index: 999;
 }
 .drawer_list {
   width: 100%;
 }
 .drawer_title {
   width: 100%;
-  line-height: 50px;
+  line-height: .7rem;
   background: #f0f0f0;
   padding-left: 20px;
 }
 .drawer_ele {
   width: 100%;
-  height: 80px;
+  height: 1.4rem;
   display: flex;
-  padding: 5px 20px;
-  border-bottom: 1px solid #ccc;
+  padding: .10rem .40rem;
+  border-bottom: .1px solid #ccc;
   img {
-    width: 90px;
-    height: 70px;
+    width: 1.4rem;
+    height: 1rem;
   }
   .title {
     flex: 1;
     p {
-      line-height: 25px;
-      margin-left: 10px;
+      line-height: .6rem;
+      margin-left: .3rem;
       color: #666;
-      font-size: 18px;
-    
+      font-size: .30rem;
     }
-    span{
+    span {
       display: block;
-      line-height: 25px;
+      line-height: .6rem;
       width: 100%;
       text-align: center;
       color: red;
-      font-size: 14px;
+      font-size: .26rem;
     }
   }
   &:last-child {

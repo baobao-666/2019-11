@@ -2,8 +2,6 @@
   <div class="wrap">
     <!-- 列表渲染组件 -->
     <div class="list-page">
-      <!-- {{Alllist.length}} -->
-      <!-- <div v-for="(item,index) in Alllist" :key="index">{{item}}</div> -->
       <ListCode :id="item.title" v-for="(item,index) in list" :key="index" :item="item"></ListCode>
     </div>
 
@@ -12,7 +10,7 @@
       <DrawerCode v-if="drawerflag"></DrawerCode>
     </transition>
 
-     <!--导航组件   arr 传入数据 默认英文26 事件传出点击的值  -->
+     <!--导航组件   arr 传入数据 事件传出点击的值  -->
     <NavList :arr="arr" @Parent_jump="jumps"></NavList>
   </div> 
 </template>
@@ -37,13 +35,8 @@ export default {
     NavList,
     DrawerCode
   },
-  data() {
-    return {
-    
-    };
-  },
   computed: {
-    // ...mapState(['drawerflag'])
+    // 数据来自store/module/home
     ...mapState({
       Alllist: state => state.home.allList,
       arr:state=>state.home.arr,
@@ -64,10 +57,7 @@ export default {
     }
   },
   created() {
-
     this.getMasterAllList()
-  },
-  mounted() {
   }
 };
 </script>
