@@ -15,30 +15,30 @@
           <span @click="jump(list.SerialID)">{{list&&list.BottomEntranceTitle}}</span>
         </div>
       </div>
-   
 
-    <div class="car-list">
-      <div class="c-type">
-        <span>全部</span>
-        <span>2019</span>
-      </div>
+      <div class="car-list">
+        <div class="c-type">
+          <!-- <span>全部</span>
+          <span>2019</span>-->
+          <span v-for="(item,index) in titlist" :key="index" :class="{active:curIndex===index}" @click="cut(index)">{{item}}</span>
+        </div>  
 
-      <div class="item" v-for="(item, index) in list.list" :key="index">
-        <p>{{ item.exhaust_str }}/{{ item.max_power_str }} 涡轮增压</p>
-        <ul>
-          <li class="line">
-            <p class="one">{{ item.car_name }}</p>
-            <p class="two">{{ item.trans_type }}</p>
-            <p class="three">
-              <span>指导价{{ item.market_attribute.official_refer_price }}</span>
-              <span>{{ item.market_attribute.dealer_price }}起</span>
-            </p>
-            <button>询问底价</button>
-          </li>
-        </ul>
+        <div class="item" v-for="(item, index) in list.list" :key="index">
+          <p>{{ item.exhaust_str }}/{{ item.max_power_str }} 涡轮增压</p>
+          <ul>
+            <li class="line">
+              <p class="one">{{ item.car_name }}</p>
+              <p class="two">{{ item.trans_type }}</p>
+              <p class="three">
+                <span>指导价{{ item.market_attribute.official_refer_price }}</span>
+                <span>{{ item.market_attribute.dealer_price }}起</span>
+              </p>
+              <button>询问底价</button>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
- </header>
+    </header>
     <div class="foot" @click="jump(id)">
       <p>询问低价</p>
       <p>本地经销商为你报价</p>
@@ -56,15 +56,21 @@ export default {
       //全部数据
       list: [],
       //头部图片
-      titImg: ""
+      titImg: "",
+      titlist: ["全部", "2019"],
+      curIndex: 0
     };
   },
   computed: {},
   methods: {
+    cut(index) {
+      console.log(index)
+      this.curIndex = index;
+    },
     getlist() {
       axios
         .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
-          params: { SerialID: this.$route.query.id}
+          params: { SerialID: this.$route.query.id }
         })
         .then(res => {
           console.log(res.data.data);
@@ -75,7 +81,7 @@ export default {
         });
     },
     jump(id) {
-      console.log("id...",id)
+      console.log("id...", id);
       this.$router.push({ path: "/carthome", query: { id } });
     }
   },
@@ -109,7 +115,7 @@ export default {
       width: 100%;
       height: 100%;
       // top:50%;
-    // transform: translateY(-50%)
+      // transform: translateY(-50%)
     }
     span {
       position: absolute;
@@ -179,7 +185,7 @@ export default {
     font-size: 18px;
     & span:first-child {
       margin: 0 20px 0 15px;
-      color: skyblue;
+      // color: skyblue;
     }
   }
   .item {
@@ -259,5 +265,9 @@ export default {
   & > p:first-child {
     font-size: 20px;
   }
+}
+
+.active{
+  color:skyblue;
 }
 </style>
