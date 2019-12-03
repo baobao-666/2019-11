@@ -87,6 +87,10 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+// @function rem($font){
+//   @return font / 16
+// }
+
 .mess-page {
   width: 100%;
   height: 100%;
@@ -97,10 +101,10 @@ export default {
 }
 .mess-page header {
   width: 100%;
-  height: 256px;
+  height: 8rem;
   background: #fff;
   .img {
-    height: 176px;
+    height: 5.5rem;
     // background: cornflowerblue;
     position: relative;
     img {
@@ -109,27 +113,27 @@ export default {
     }
     span{
       position: absolute;
-      bottom:5px;
-      right:10px;
+      bottom:0.15rem;
+      right:0.31rem;
       background: rgba(0,0,0,.5);
-      border-radius: 10px;
+      border-radius: 0.31rem;
       color:#fff;
-      padding:5px;
+      padding:0.15rem;
     }
   }
   .text {
-    height: 80px;
+    height: 1.2rem;
     display: flex;
+     line-height: 0.55rem;
     .left {
       width: 50%;
-      height: 80px;
+      height: 1.2rem;
       display: flex;
       flex-direction: column;
       text-align: center;
-      line-height: 35px;
       & > p:first-child {
         color: red;
-        font-size: 18px;
+        // font-size: 18px;
         font-weight: 900;
       }
       & > p:last-child {
@@ -139,10 +143,12 @@ export default {
     }
     .right {
       width: 50%;
-      height: 80px;
+      height:  1.2rem;
       // margin:10px;
       // line-height: 80px;
       // text-align: center;
+      // line-height: 1.1rem;
+
       display: flex;
       justify-content: center;
       align-items: center;
@@ -167,7 +173,7 @@ export default {
     width: 100%;
     background: #fff;
     margin: 10px 0;
-    height: 49.06px;
+    height: 1.55rem;
     padding: 10px 0px;
     display: flex;
     justify-content: flex-start;
@@ -180,10 +186,10 @@ export default {
   }
   .item {
     width: 100%;
-    height: 154px;
+    height: 4.8rem;
     background: #fff;
     & > p {
-      height: 26.66px;
+      height: 0.43rem;
       padding: 0 10px;
       // text-align: center;
       display: flex;
@@ -195,11 +201,11 @@ export default {
     }
     ul {
       width: 100%;
-      height: 127.44px;
+      height: 2.4rem;
       //   background: lime;
 
       .line > .one {
-        height: 39.45px;
+        height:0.6rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -209,18 +215,17 @@ export default {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        height: 19px;
+        height: 0.5rem;
         color: #999;
-
         padding: 0 10px;
       }
       .line > .three {
-        height: 26.33px;
+        height: 0.5rem;
         padding: 0 10px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        font-size: 14px;
+        // font-size: 14px;
         color: #999;
         & > span:last-child {
           color: Red;
@@ -228,7 +233,7 @@ export default {
         }
       }
       button {
-        height: 42.66px;
+        height:.8rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -245,7 +250,7 @@ export default {
 }
 .foot {
   width: 100%;
-  height: 53.33px;
+  height:0.8rem;
   position: fixed;
   bottom: 0;
   left: 0;
