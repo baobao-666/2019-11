@@ -66,7 +66,6 @@ export default {
       curIndex: 0
     };
   },
-  computed: {},
   methods: {
     cut(index) {
       console.log(index);
@@ -92,7 +91,6 @@ export default {
   created() {
     this.getlist();
   },
-  mounted() {}
 };
 </script>
 <style scoped lang="scss">
