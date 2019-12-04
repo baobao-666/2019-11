@@ -65,7 +65,6 @@ export default {
       curIndex: 0
     };
   },
-  computed: {},
   methods: {
     cut(index) {
       console.log(index);
@@ -90,7 +89,7 @@ export default {
   },
   created() {
     this.getlist();
-  }
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -103,15 +102,13 @@ export default {
 }
 .mess-page header {
   width: 100%;
-  height: 100%;
-  // overflow-y: scroll;
-  overflow: scroll;
+  flex: 1;
+  overflow-y: scroll;
+  // overflow: scroll;
   background: #fff;
-
   .img {
     width: 100%;
     height: 166px;
-    // background: cornflowerblue;
     position: relative;
     // overflow: hidden;
     img {
