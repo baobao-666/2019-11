@@ -10,8 +10,8 @@ import home from './modules/home'
 // 城市数据处理
 import mess from './modules/mess'
 
-
-
+// 详情排序数据
+import CartMess from './modules/Cartmess'
 
 
 
@@ -19,7 +19,8 @@ export default new Vuex.Store({
  
   modules: {
     home,
-    mess
+    mess,
+    CartMess
   },
   plugins:[creareLogger()]
 });

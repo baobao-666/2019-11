@@ -1,5 +1,5 @@
 <template>
-  <div class="mess-page">
+  <div class="mess-page" >
     <header>
       <div class="img">
         <img :src="this.titImg" alt />
@@ -25,7 +25,6 @@
             @click="cut(index)"
           >{{item}}</span>
         </div>
-
         <div class="item" v-for="(item, index) in list.list" :key="index">
           <p>{{ item.exhaust_str }}/{{ item.max_power_str }} 涡轮增压</p>
           <ul>
@@ -50,11 +49,9 @@
 </template>
 <script>
 import axios from "axios";
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
-  props: {},
-  components: {},
   data() {
     return {
       //全部数据
@@ -66,29 +63,28 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      getCartMessSort:"CartMess/getCartMessSort"
+    }),
     cut(index) {
       console.log(index);
       this.curIndex = index;
-    },
-    getlist() {
-      axios
-        .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
-          params: { SerialID: this.$route.query.id }
-        })
-        .then(res => {
-          if (res.data.code === 1) {
-            this.titImg = res.data.data.Picture;
-            this.list = res.data.data;
-          }
-        });
     },
     jump(id) {
       console.log("id...", id);
       this.$router.push({ path: "/carthome", query: { id } });
     }
   },
+  computed:{
+       ...mapState({
+         desclist:state=>state.CartMess.desclist,
+         current:state=>state.CartMess.current,
+         year:state=>state.CartMess.year,
+         currentList:state=>state.CartMess.currentList
+       })
+  },
   created() {
-    this.getlist();
+    this.getCartMessSort(this.$route.query.id)
   }
 };
 </script>
