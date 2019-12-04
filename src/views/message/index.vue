@@ -41,7 +41,7 @@
         </div>
       </div>
     </header>
-    <div class="foot" @click="jump(id)">
+    <div class="foot" @click="jump(list.SerialID)">
       <p>询问低价</p>
       <p>本地经销商为你报价</p>
     </div>
@@ -112,6 +112,8 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
       display: block;
+      // width: 100%;
+      // height: 100%;
       max-width: 100%;
       max-height: 100%;
       outline: none;
