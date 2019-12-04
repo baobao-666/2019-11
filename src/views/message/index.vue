@@ -20,8 +20,13 @@
         <div class="c-type">
           <!-- <span>全部</span>
           <span>2019</span>-->
-          <span v-for="(item,index) in titlist" :key="index" :class="{active:curIndex===index}" @click="cut(index)">{{item}}</span>
-        </div>  
+          <span
+            v-for="(item,index) in titlist"
+            :key="index"
+            :class="{active:curIndex===index}"
+            @click="cut(index)"
+          >{{item}}</span>
+        </div>
 
         <div class="item" v-for="(item, index) in list.list" :key="index">
           <p>{{ item.exhaust_str }}/{{ item.max_power_str }} 涡轮增压</p>
@@ -64,7 +69,7 @@ export default {
   computed: {},
   methods: {
     cut(index) {
-      console.log(index)
+      console.log(index);
       this.curIndex = index;
     },
     getlist() {
@@ -111,11 +116,16 @@ export default {
     height: 166px;
     // background: cornflowerblue;
     position: relative;
+    // overflow: hidden;
     img {
-      width: 100%;
-      height: 100%;
-      // top:50%;
-      // transform: translateY(-50%)
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      outline: none;
     }
     span {
       position: absolute;
@@ -128,19 +138,21 @@ export default {
     }
   }
   .text {
-    height: 80px;
+    height: 50px;
     display: flex;
     .left {
       width: 50%;
-      height: 80px;
+      height: 50px;
       display: flex;
       flex-direction: column;
-      text-align: center;
-      line-height: 35px;
+      justify-content: flex-start;
+     line-height: 25px;
+      padding-left:10px;
+      // line-height: 20px;
       & > p:first-child {
         color: red;
-        font-size: 18px;
-        font-weight: 900;
+        font-size: 20px;
+        // font-weight: 900;
       }
       & > p:last-child {
         font-size: 14px;
@@ -149,7 +161,7 @@ export default {
     }
     .right {
       width: 50%;
-      height: 80px;
+      height: 50px;
       // margin:10px;
       // line-height: 80px;
       // text-align: center;
@@ -267,7 +279,7 @@ export default {
   }
 }
 
-.active{
-  color:skyblue;
+.active {
+  color: skyblue;
 }
 </style>

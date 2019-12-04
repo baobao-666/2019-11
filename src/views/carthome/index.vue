@@ -117,11 +117,17 @@ header {
     display: flex;
     .img {
       width: 40%;
-      height: 100%;
-      // overflow: hidden;
+      // height: 100%;
+      position: relative;
+      overflow: hidden;
       img{
-        width: 100%;
-        height: 80px;
+      position: absolute;
+      max-width: 100%;
+      max-height: 100%;
+      outline: none;
+      top: 50%;
+      left:50%;
+      transform: translate(-50%,-50%)
       }
     }
     .text {
