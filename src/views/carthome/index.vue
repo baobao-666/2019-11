@@ -3,7 +3,6 @@
     <header>
       <p>可向多个商家咨询最低价，商家及时回复</p>
     </header>
-
     <div class="count">
       <div class="hover">
         <div class="img">

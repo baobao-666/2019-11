@@ -18,8 +18,6 @@
 
       <div class="car-list">
         <div class="c-type">
-          <!-- <span>全部</span>
-          <span>2019</span>-->
           <span
             v-for="(item,index) in titlist"
             :key="index"
@@ -52,6 +50,7 @@
 </template>
 <script>
 import axios from "axios";
+import { mapActions } from 'vuex';
 
 export default {
   props: {},
@@ -91,8 +90,7 @@ export default {
   },
   created() {
     this.getlist();
-  },
-  mounted() {}
+  }
 };
 </script>
 <style scoped lang="scss">
