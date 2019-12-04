@@ -1,5 +1,5 @@
 <template>
-  <div class="nav_list" 
+  <div class="nav_list"  
     ref="container"
     @touchstart="touchStart"
     @touchmove="touchMove"
