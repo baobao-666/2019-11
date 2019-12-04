@@ -27,12 +27,6 @@ export default {
      this.setAutomatic(name)
      this.setcityblock(false)
  }
-    },
-    created(){
-
-    },
-    mounted(){
-
     }
 }
 </script>

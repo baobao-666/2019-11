@@ -56,7 +56,7 @@ export default {
   bottom: 0;
   right: 0;
   background: white;
-  overflow-y: scroll;
+  overflow-y: auto;
   z-index: 999;
 }
 .drawer_list {
@@ -82,7 +82,7 @@ export default {
     flex: 1;
     p {
       line-height: .6rem;
-      margin-left: .3rem;
+      margin-left: .1rem;
       color: #666;
       font-size: .30rem;
     }

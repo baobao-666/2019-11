@@ -92,7 +92,7 @@ export default {
       position: relative;
       width: 95%;
       margin: 0 2.5%;
-      border-bottom: .1px solid #ccc;
+      border-bottom: .1rem solid #ccc;
       font-size: 16px;
       &:last-child{
           border: none;

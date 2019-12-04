@@ -7,8 +7,9 @@ Vue.use(Vuex);
 // 列表类数据
 import home from './modules/home'
 
-// 详情页数据
+// 城市数据处理
 import mess from './modules/mess'
+
 
 
 
