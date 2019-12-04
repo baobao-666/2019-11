@@ -4,14 +4,24 @@ const state={
     automatic:"北京",
     cityList:[],
     cityOneList:[],
-    cityFlag:false
+    cityFlag:false,
+    cityblock: false,
 }
 const mutations={
-    setAll(state,data){
-        state.cityList=data
+    setAll(state,CityList){
+        state.cityList=CityList
     },
-    setOne(state,data){
-        state.cityOneList=data
+    setOne(state,CityOneList){
+        state.cityOneList=CityOneList
+    },
+    setCityFlag(state,FlagState){
+      state.cityFlag=FlagState
+     },
+    setAutomatic(state,Cityname){
+       state.automatic=Cityname
+    },
+    setcityblock(state,BlockState){
+        state.cityblock=BlockState
     }
 }
 

@@ -11,7 +11,7 @@
           <span>></span>
           </div>
     </div>
-    <DrawerCity v-if="cityFlag" ></DrawerCity>
+    <DrawerCity v-if="cityFlag"></DrawerCity>
   </div>
 </template>
 
@@ -21,7 +21,7 @@
 import  DrawerCity from "../drawer_city/"
 
 
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
   components:{
      DrawerCity
@@ -38,8 +38,14 @@ export default {
       getcityList:'mess/getcityList',
       getcityOneList:'mess/getcityOneList'
     }),
+    ...mapMutations({
+      setCityFlag:'mess/setCityFlag',
+      setcityblock:'mess/setcityblock'
+    })
+    ,
     cityTo(id){
-       this.getcityOneList(id)
+       this.getcityOneList(id);
+       this.setCityFlag(true);
     }
   },
   created(){
