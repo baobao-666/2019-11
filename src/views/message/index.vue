@@ -106,15 +106,13 @@ export default {
 }
 .mess-page header {
   width: 100%;
-  height: 100%;
-  // overflow-y: scroll;
-  overflow: scroll;
+  flex: 1;
+  overflow-y: scroll;
+  // overflow: scroll;
   background: #fff;
-
   .img {
     width: 100%;
     height: 166px;
-    // background: cornflowerblue;
     position: relative;
     // overflow: hidden;
     img {
@@ -181,7 +179,7 @@ export default {
 }
 .mess-page .car-list {
   width: 100%;
-  height: 100%;
+  // height: 100%;
   // overflow-y: scroll;
   display: flex;
   flex-direction: column;
