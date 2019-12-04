@@ -102,22 +102,20 @@ export default {
   display: flex;
   flex-direction: column;
   background: #f4f4f4;
-  font-size: 18px;
+  font-size: .33rem;
 }
 header {
   background: #79cd92;
-  height: 30px;
+  height: .6rem;
   text-align: center;
-  line-height: 30px;
+  line-height: .6rem;
   p {
     color: #fff;
   }
 }
 .count {
   flex: 1;
-
   .hover {
-    // padding:20px;
     width: 100%;
     height: 100px;
     padding: 10px;
@@ -125,7 +123,6 @@ header {
     display: flex;
     .img {
       width: 40%;
-      // height: 100%;
       position: relative;
       overflow: hidden;
       img{
@@ -142,36 +139,35 @@ header {
       width: 60%;
       height: 100%;
       display: flex;
-      line-height: 22px;
+      line-height: .43rem;
       flex-direction: column;
       justify-content: flex-start;
-      // align-items: center;
       & p:last-child {
-        font-size: 14px;
+        font-size: .3rem;
       }
     }
   }
   .info {
     p {
-      height: 25px;
+      height: .5rem;
       background: #eee;
       font-size: 14px;
-      line-height: 25px;
+      line-height: .5rem;
       color: #666;
-      padding-left: 10px;
+      padding-left: .2rem;
     }
     ul {
-      padding: 0 10px;
+      padding: 0 .2rem;
       background: #fff;
       li {
-        height: 44px;
-        line-height: 44px;
+        height: .9rem;
+        line-height: .9rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #ccc;
         span {
-          font-size: 16px;
+          font-size: .3rem;
         }
         input {
           outline: none;
@@ -181,7 +177,7 @@ header {
     }
   }
   .quotation {
-    height: 64px;
+    height: 1.21rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -189,7 +185,7 @@ header {
     background: #fff;
     button {
       width: 80%;
-      height: 35px;
+      height: .7rem;
       background: #3aacff;
       outline: none;
       border: 0;
@@ -200,15 +196,14 @@ header {
     }
   }
   .foot {
-    height: 25px;
-    padding: 0 10px;
-    font-size: 16px;
+    height: .3rem;
+    padding: 0 .2rem;
+    font-size: .31rem;
     background: #eee;
     color: #666;
-    line-height: 25px;
+    line-height: .3rem;
   }
 }
-
 // 城市列表动画
 .cityList-enter-active {
   transition: all 1s ease;
