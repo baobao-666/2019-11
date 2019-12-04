@@ -6,7 +6,8 @@
 
 <style lang="scss">
 *{
-  margin: 0;padding: 0;
+  margin: 0;
+  padding: 0;
   
 }
 #app,html,body {
@@ -15,17 +16,15 @@
   overflow: hidden;
 }
 html{
-  font-size: calc(100vw/750*100);
+   font-size: calc(100vw/750*100);
 }
 body{
   font-size: .32rem;
 }
-
-
 *{
   margin: 0;
   padding: 0;
- list-style: none;
+  list-style: none;
   box-sizing: border-box;
 }
 

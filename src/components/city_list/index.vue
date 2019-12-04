@@ -6,44 +6,50 @@
     </div>
     <div class="city_item">
       <div class="province">省份</div>
-      <div class="item_e" @click="cityTo(item.CityID)" v-for=" (item,index) in macticList"  :key="index" >
+      <div class="item_e" @click="cityTo(item.CityID)" v-for="(item,index) in cityList"  :key="index">
           {{item.CityName}}
           <span>></span>
           </div>
     </div>
+    <DrawerCity v-if="cityFlag"></DrawerCity>
   </div>
 </template>
 
 <script>
+
+// 列表抽屉
+import  DrawerCity from "../drawer_city/"
+
+
+import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
-  data() {
-    return {
-        automatic:"北京",
-        macticList:[]
-    };
+  components:{
+     DrawerCity
+  },
+  computed:{
+...mapState({
+   cityList: state=>state.mess.cityList,
+   automatic:state=>state.mess.automatic,
+   cityFlag:state=>state.mess.cityFlag
+})
   },
   methods: {
-    getList() {
-      this.$http
-        .get("https://baojia.chelun.com/v1-city-alllist.html")
-        .then(res => {
-          console.log(res);
-          if(res.data.code===1){
-              console.log(res.data.msg);
-              this. macticList=res.data.data
-          }
-        });
-    },
+    ...mapActions({
+      getcityList:'mess/getcityList',
+      getcityOneList:'mess/getcityOneList'
+    }),
+    ...mapMutations({
+      setCityFlag:'mess/setCityFlag',
+      setcityblock:'mess/setcityblock'
+    })
+    ,
     cityTo(id){
-      console.log(id);
-    //   this.$http.get('https://baojia.chelun.com/v1-city-alllist.html')
+       this.getcityOneList(id);
+       this.setCityFlag(true);
     }
   },
   created(){
- this.getList()
-  },
-  mounted() {
-     
+      this.getcityList();
   }
 };
 </script>
@@ -56,15 +62,16 @@ export default {
   right: 0;
   overflow-y: scroll;
   z-index: 88;
+  background: #fff;
 }
 @mixin title(){
-     font-size: 14px;
+     font-size: .28rem;
      background: #eee;
-     padding: 2px 0 2px 10px;
+     padding: .2rem 0 .2rem .10rem;
 }
 @mixin List(){
         width: 100%;
-        line-height: 50px;
+        line-height: .7rem;
         padding-left: 20px;
 }
 .defaut_city{
@@ -85,7 +92,7 @@ export default {
       position: relative;
       width: 95%;
       margin: 0 2.5%;
-      border-bottom: 1px solid #ccc;
+      border-bottom: .1px solid #ccc;
       font-size: 16px;
       &:last-child{
           border: none;

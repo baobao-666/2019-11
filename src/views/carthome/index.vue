@@ -42,15 +42,16 @@
       </div>
     </div>
 
-    <button @click="alerts">点击渲染城市列表</button>
+    <button @click="alerts">{{automatic}}</button>
     <transition name="cityList">
-      <CityCode v-if="block"></CityCode>
+      <CityCode v-if="cityblock"></CityCode>
     </transition>
   </div>
 </template>
 <script>
 import CityCode from "@/components/city_list/";
 import axios from 'axios'
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   props: {},
@@ -59,15 +60,22 @@ export default {
   },
   data() {
     return {
-      block: false,
       list:[],
       titImg:''
     };
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      cityblock:state=>state.mess.cityblock,
+      automatic:state=>state.mess.automatic
+    })
+  },
   methods: {
+    ...mapMutations({
+       setcityblock:"mess/setcityblock"
+    }),
     alerts() {
-      this.block = true;
+       this.setcityblock(true)
     }
   },
   created() {
@@ -76,10 +84,11 @@ export default {
         params: { SerialID: this.$route.query.id }
       })
       .then(res => {
-        console.log(res.data.data);
+        console.log(res);
         if (res.data.code === 1) {
           this.titImg = res.data.data.Picture;
           this.list = res.data.data;
+          console.log(this.list);
         }
       });
     // console.log(this.$route.query.id)
