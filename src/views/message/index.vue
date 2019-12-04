@@ -3,7 +3,7 @@
     <header>
       <div class="img">
         <img :src="this.titImg" alt />
-        <span>{{list&&list.pic_group_count}}</span>
+        <span>{{list&&list.pic_group_count}}张图片</span>
       </div>
 
       <div class="text">
@@ -90,14 +90,14 @@ export default {
   },
   created() {
     this.getlist();
-  },
+  }
 };
 </script>
 <style scoped lang="scss">
 .mess-page {
   width: 100%;
   height: 100%;
-  background: #f2f2f2;
+  background: #f4f4f4;
   display: flex;
   flex-direction: column;
 }
@@ -105,18 +105,17 @@ export default {
   width: 100%;
   flex: 1;
   overflow-y: scroll;
-  // overflow: scroll;
-  background: #fff;
+  background: #f2f2f2;
   .img {
     width: 100%;
-    height: 166px;
+    height: 4.5rem;
     position: relative;
-    // overflow: hidden;
+    background: #fff;
     img {
       position: absolute;
-      top:50%;
-      left:50%;
-      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       display: block;
       max-width: 100%;
       max-height: 100%;
@@ -124,52 +123,46 @@ export default {
     }
     span {
       position: absolute;
-      bottom: 5px;
-      right: 10px;
+      bottom: .15rem;
+      right: .3rem;
       background: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
+      border-radius: .3rem;
       color: #fff;
-      padding: 5px;
+      padding: .1rem .2rem;
     }
   }
   .text {
-    height: 50px;
+    height: 1rem;
     display: flex;
+    background: #fff;
     .left {
       width: 50%;
-      height: 50px;
+      height: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-     line-height: 25px;
-      padding-left:10px;
-      // line-height: 20px;
+      line-height: .5rem;
+      padding-left: .2rem;
       & > p:first-child {
         color: red;
-        font-size: 20px;
-        // font-weight: 900;
+        font-size: 0.4rem;
       }
       & > p:last-child {
-        font-size: 14px;
+        font-size: .3rem;
         color: #ccc;
       }
     }
     .right {
       width: 50%;
-      height: 50px;
-      // margin:10px;
-      // line-height: 80px;
-      // text-align: center;
+      height: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
       span {
-        // width: 100%;
-        // height:100%;
-        padding: 8px 45px;
+        padding: .2rem 1rem;
         background: skyblue;
         color: #fff;
-        border-radius: 5px;
+        border-radius: .1rem;
       }
     }
   }
@@ -181,69 +174,65 @@ export default {
   .c-type {
     width: 100%;
     background: #fff;
-    margin: 10px 0;
-    height: 49.06px;
-    padding: 10px 0px;
+    margin: .2rem 0 0 0;
+    height: 1rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 18px;
+    font-size: .4rem;
     & span:first-child {
-      margin: 0 20px 0 15px;
+      padding: 0 .4rem 0 .3rem;
       // color: skyblue;
     }
   }
   .item {
     width: 100%;
-    height: 154px;
+    height: 3rem;
     background: #fff;
     & > p {
-      height: 26.66px;
-      padding: 0 10px;
-      // text-align: center;
+      height:.5rem;
+      padding: 0 .2rem;
       display: flex;
       justify-content: flex-start;
       align-items: center;
       color: #999;
-      font-size: 14px;
+      font-size: .3rem;
       background: #f4f4f4;
     }
     ul {
       width: 100%;
-      height: 127.44px;
-      //   background: lime;
-
+      height:2.3rem;
       .line > .one {
-        height: 39.45px;
+        height:.8rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin: 0 10px;
+        margin: 0 .2rem;
       }
       .line > .two {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        height: 19px;
+        height: .4rem;
         color: #999;
 
-        padding: 0 10px;
+        padding: 0 .2rem;
       }
       .line > .three {
-        height: 26.33px;
-        padding: 0 10px;
+        height:.5rem;
+        padding: 0 .2rem;
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        font-size: 14px;
+        font-size: .3rem;
         color: #999;
         & > span:last-child {
           color: Red;
-          margin-left: 10px;
+          margin-left: .2rem;
         }
       }
       button {
-        height: 42.66px;
+        height: .83rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -251,7 +240,7 @@ export default {
         color: skyblue;
         border: 0;
         width: 100%;
-        font-size: 18px;
+        font-size: .35rem;
         background: #fff;
         border-top: 1px solid #ccc;
       }
@@ -261,17 +250,17 @@ export default {
 .foot {
   display: flex;
   width: 100%;
-  height: 53.33px;
+  height: 1.1rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: skyblue;
   color: #fff;
   & > p:first-child {
-    font-size: 20px;
+    font-size: .4rem;
+    margin-bottom:.1rem;
   }
 }
-
 .active {
   color: skyblue;
 }
