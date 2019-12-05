@@ -5,7 +5,6 @@ let state={
     current: '全部',    // 当前选择年份 
     year: ['全部'],     // 所有的年份
     currentList: [],    // 当前年份的车款数据 
-
 }
 
 // 给车款排序
@@ -59,8 +58,6 @@ let mutations={
             let year = payload.data.list.map(item=>item.market_attribute.year);
             let arr =[...new Set(year)]
             state.year = state.year.concat(arr);
-            console.log(state.year);
-
             // 2.拿到当前选择年份的数据
             let currentList = [];
             if (state.current == '全部'){
