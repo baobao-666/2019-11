@@ -22,14 +22,14 @@
             v-for="(item,index) in year"
             :key="index"
             :class="{active:curIndex===index}"
-            @click="cut(index)"
+            @click="cut(index,item)"
           >{{item}}</span>
         </div>
         <div class="item" v-for="(item, index) in currentList" :key="index">
           <p>{{item.key}}</p>
           <ul>
             <li class="line">
-              <p class="one">{{ item.list[0].car_name }}</p>
+              <p class="one">{{item.list[0].market_attribute.year}}款{{ item.list[0].car_name }}</p>
               <p class="two">{{ item.list[0].trans_type }}</p>
               <p class="three">
                 <span>指导价{{ item.list[0].market_attribute.official_refer_price }}</span>
@@ -59,11 +59,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCartMessSort: "CartMess/getCartMessSort"
+      getCartMessSort: "CartMess/getCartMessSort",
     }),
-    cut(index) {
-      console.log(index);
+    ...mapMutations({backRoll:"CartMess/backRoll"}),
+    //tab切换
+    cut(index,item) {
       this.curIndex = index;
+      this.backRoll(item)
+      this.getCartMessSort(this.$route.query.id);
     },
     jump(id) {
       console.log("id...", id);
@@ -170,8 +173,12 @@ export default {
     justify-content: flex-start;
     align-items: center;
     font-size: 0.4rem;
+    span{
+       margin-right:.2rem;
+    }
     & span:first-child {
-      padding: 0 0.4rem 0 0.3rem;
+      padding-left:0.35rem;
+     
       // color: skyblue;
     }
   }
