@@ -2,7 +2,7 @@
   <div class="city_page">
     <div class="defaut_city">
       <div class="default_title">自动定位</div>
-      <div class="default_city" @click="setcityblock(false)" >{{automatic}}</div>
+      <div class="default_city">{{automatic}}</div>
     </div>
     <div class="city_item">
       <div class="province">省份</div> 
@@ -69,7 +69,9 @@ export default {
 @mixin title() {
   font-size: 0.28rem;
   background: #eee;
-  padding: 0.2rem 0 0.2rem 0.1rem;
+  line-height: .6rem;
+  padding-left: .2rem;
+  
 }
 @mixin List() {
   width: 100%;
@@ -78,7 +80,7 @@ export default {
 }
 .defaut_city {
   width: 100%;
-  .default_title {
+ .default_title {
     @include title();
   }
   .default_city {
