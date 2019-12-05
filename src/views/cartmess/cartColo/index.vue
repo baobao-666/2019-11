@@ -1,35 +1,29 @@
 <template>
     <div class="cart-color">
-        汽车颜色
+       <ImgCode v-for="(item,index) in ColorList" :key="index" :items="item" ></ImgCode>
     </div>
 </template>
 <script>
+
+import ImgCode from '@/components/cartmess/img_list/'
+import { mapState } from 'vuex'
+
+
 export default {
-    props:{
-
-    },
     components:{
-
-    },
-    data(){
-        return {
-
-        }
+       ImgCode
     },
     computed:{
-
-    },
-    methods:{
-
-    },
-    created(){
-
-    },
-    mounted(){
-
+       ...mapState({
+           ColorList:state=>state.ColorStyle.ColorList,
+       })
     }
 }
 </script>
-<style scoped lang="">
-
+<style scoped lang="scss">
+.cart-color{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
 </style>

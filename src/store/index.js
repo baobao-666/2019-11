@@ -13,6 +13,8 @@ import mess from './modules/mess'
 // 详情排序数据
 import CartMess from './modules/Cartmess'
 
+// 颜色样式列表
+import ColorStyle from './modules/colorStyle'
 
 
 export default new Vuex.Store({
@@ -20,7 +22,8 @@ export default new Vuex.Store({
   modules: {
     home,
     mess,
-    CartMess
+    CartMess,
+    ColorStyle
   },
   plugins:[creareLogger()]
 });

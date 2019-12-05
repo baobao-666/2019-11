@@ -2,8 +2,8 @@
   <div class="drawer_wrapp" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
     <div class="drawer_list" v-for="(item,index) in deamerList" :key="index">
       <div class="drawer_title">{{item.GroupName}}</div>
-      <div v-for="(ele,ind) in item.GroupList" :key="ind" class="drawer_ele">
-        <img v-lazy="ele.Picture" @click="getList(ele.SerialID)" />
+      <div v-for="(ele,ind) in item.GroupList" :key="ind" class="drawer_ele" @click="getList(ele.SerialID)" >
+        <img v-lazy="ele.Picture"  />
         <div class="title">
           <p>{{ele.AliasName}}</p>
           <span>{{ele.DealerPrice}}</span>
@@ -17,11 +17,6 @@ import { mapState, mapMutations } from "vuex";
 
 
 export default {
-  props: {},
-  components: {},
-  data() {
-    return {};
-  },
   computed: {
     ...mapState({
       deamerList: state => state.home.deamerList
@@ -44,6 +39,7 @@ export default {
           },
     touchEnd(e) {
       console.log("移动结束");
+      this.setFlag(false)
     }
   }
 };

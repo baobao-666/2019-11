@@ -5,10 +5,8 @@ import router from './router'
 import store from './store'
 
 // 引入 icon图标右箭头
-import './icon/rightArrow/iconfont.css'
+import './icon/iconAl/iconfont.css'
 
-// 引入问好白底
-import './icon/wenhao/iconfont.css'
 
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'

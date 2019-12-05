@@ -1,33 +1,40 @@
 <template>
   <div class="cart-mess">
       <div class="types">
-          <router-link  v-for="(item,index) in title" :key="index" :to="item.path" tag="span">{{item.text}}</router-link>
+        <div v-for="(item,index) in title" :key="index" >
+            <router-link :to="item.path" tag="span">{{item.text}}</router-link>
+            <b class="icon iconfont">&#xe617;</b>
+        </div>
       </div>
-    <router-view></router-view>
+      <div class="cart-wrap">
+       <router-view></router-view>
+      </div>
   </div>
 </template>
 <script>
+
+import { mapActions, mapState } from 'vuex';
 export default {
   props: {},
   components: {},
   data() {
     return {
-        title:[
-            {
-                text:"全部颜色",
-                 path:'/cartmess/cartcolor',
-            },
-             {
-                text:"全部款式",
-                path:'/cartmess/cartstyle',
-            }
-        ]
+       
     };
   },
-  computed: {},
-  methods: {},
-  created() {},
-  mounted() {}
+  computed: {
+    ...mapState({
+     title:state=>state.ColorStyle.title
+    })
+  },
+  methods: {
+    ...mapActions({
+      getAllColor:"ColorStyle/getAllColor"
+    })
+  },
+  created() {
+    this.getAllColor(2593)
+  }
 };
 </script>
 <style scoped lang="scss">
@@ -44,5 +51,15 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    div{
+      b{
+        font-weight: 600;
+        margin-left: .1rem;
+      }
+    }
+}
+.cart-wrap{
+   flex: 1;
+   overflow: hidden;
 }
 </style>
