@@ -1,39 +1,39 @@
 <template>
-  <div class="mess-page" >
+  <div class="mess-page"  v-if="(Object.keys(desclist).length)" >
     <header>
       <div class="img">
-        <img :src="this.titImg" alt />
-        <span>{{list&&list.pic_group_count}}张图片</span>
+        <img  v-lazy="desclist.Picture" alt />
+        <span>{{desclist.pic_group_count}}张图片</span>
       </div>
 
       <div class="text">
         <div class="left">
-          <p>{{list.market_attribute&&list.market_attribute.dealer_price}}</p>
-          <p>指导价{{list.market_attribute&&list.market_attribute.official_refer_price}}</p>
+          <p>{{desclist.market_attribute.dealer_price}}</p>
+          <p>指导价{{desclist.market_attribute.official_refer_price}}</p>
         </div>
         <div class="right">
-          <span @click="jump(list.SerialID)">{{list&&list.BottomEntranceTitle}}</span>
+          <span @click="jump(desclist.SerialID)">{{desclist.BottomEntranceTitle}}</span>
         </div>
       </div>
 
       <div class="car-list">
         <div class="c-type">
           <span
-            v-for="(item,index) in titlist"
+            v-for="(item,index) in year"
             :key="index"
             :class="{active:curIndex===index}"
             @click="cut(index)"
           >{{item}}</span>
         </div>
-        <div class="item" v-for="(item, index) in list.list" :key="index">
-          <p>{{ item.exhaust_str }}/{{ item.max_power_str }} 涡轮增压</p>
+        <div class="item" v-for="(item, index) in currentList" :key="index">
+          <p>{{item.key}}</p>
           <ul>
             <li class="line">
-              <p class="one">{{ item.car_name }}</p>
-              <p class="two">{{ item.trans_type }}</p>
+              <p class="one">{{ item.list[0].car_name }}</p>
+              <p class="two">{{ item.list[0].trans_type }}</p>
               <p class="three">
-                <span>指导价{{ item.market_attribute.official_refer_price }}</span>
-                <span>{{ item.market_attribute.dealer_price }}起</span>
+                <span>指导价{{ item.list[0].market_attribute.official_refer_price }}</span>
+                <span>{{ item.list[0].market_attribute.dealer_price }}起</span>
               </p>
               <button>询问底价</button>
             </li>
@@ -54,11 +54,6 @@ import { mapActions, mapMutations, mapState } from 'vuex';
 export default {
   data() {
     return {
-      //全部数据
-      list: [],
-      //头部图片
-      titImg: "",
-      titlist: ["全部", "2019"],
       curIndex: 0
     };
   },
@@ -112,8 +107,6 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
       display: block;
-      // width: 100%;
-      // height: 100%;
       max-width: 100%;
       max-height: 100%;
       outline: none;

@@ -1,7 +1,7 @@
 <template>
   <div class="city-home">
     <header>
-      <p>可向多个商家咨询最低价，商家及时回复</p>
+      <p>可向多个商家咨询最低价，商家及时回复<span class="icon iconfont">&#xe72d;</span></p>
     </header>
     <div class="count">
       <div class="hover">

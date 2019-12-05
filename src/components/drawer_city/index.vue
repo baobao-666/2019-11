@@ -1,8 +1,8 @@
 <template>
-    <div class="drawer_city">
+    <div class="drawer_city" @click="setFlaging"  >
         <div class="drawer_wrap">
             <div v-for="(item,index) in cityOneList" @click="setFlag(item.CityName)" :key="index" class="deawer_item">
-                {{item.CityName}}
+                {{item.CityName}}  
             </div>
         </div>
     </div>
@@ -26,6 +26,9 @@ export default {
      this.$router.push('/carthome')
      this.setAutomatic(name)
      this.setcityblock(false)
+ },
+ setFlaging(){
+     this.setCityFlag(false)
  }
     }
 }

@@ -20,11 +20,6 @@ export default {
       }
     }
   },
-  components: {},
-  data() {
-    return {};
-  },
-  computed: {},
   methods: {
     ...mapActions({
       getdrawerList: "home/getdrawerList"
@@ -36,9 +31,7 @@ export default {
         this. getdrawerList(id)
         this.setFlag(true)
     }
-  },
-  created() {},
-  mounted() {}
+  }
 };
 </script>
 <style scoped lang="scss">

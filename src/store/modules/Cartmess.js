@@ -38,11 +38,11 @@ function formatCarList(list){
     list.forEach(item=>{
         let index = newList.findIndex(value=>value.key == item.key);
         if (index !== -1){
- newList[index].list.push(item);
+            newList[index].list.push(item);
         }else{
             newList.push({
- key: item.key,
- list: [item]
+                key: item.key,
+                list: [item]
             })
         }
     })
@@ -57,21 +57,23 @@ let mutations={
             /** 处理数据 */
             // 1.拿到年份
             let year = payload.data.list.map(item=>item.market_attribute.year);
-            state.year = state.year.concat([...new Set(year)]);
+            let arr =[...new Set(year)]
+            state.year = state.year.concat(arr);
+            console.log(state.year);
 
             // 2.拿到当前选择年份的数据
             let currentList = [];
             if (state.current == '全部'){
- currentList = payload.data.list;
+               currentList = payload.data.list;
             }else{
- currentList = payload.data.list.filter(item=>item.market_attribute.year == state.current);
+              currentList = payload.data.list.filter(item=>item.market_attribute.year == state.current);
             }
 
             // 3.给当前年份数据排序
- currentList = sortCarList(currentList);
+            currentList = sortCarList(currentList);
 
             // 4.聚合key相同的车款数据
- currentList = formatCarList(currentList);
+            currentList = formatCarList(currentList);
             state.currentList = currentList;
             console.log('currentList...', currentList);
         }else{
