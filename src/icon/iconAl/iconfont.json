@@ -18,6 +18,13 @@
       "font_class": "gengduo",
       "unicode": "e600",
       "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "4682517",
+      "name": "arrow-down",
+      "font_class": "arrow-down",
+      "unicode": "e617",
+      "unicode_decimal": 58903
     }
   ]
 }

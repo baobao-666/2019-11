@@ -1,8 +1,8 @@
 <template>
   <div class="list_item">
     <div class="list_title">{{item.title}}</div>
-    <div v-for="(ele, index) in item.children" :key="index" class="list_ele">
-      <img v-lazy="ele.CoverPhoto"  @click="mess(ele.MasterID)" />
+    <div v-for="(ele, index) in item.children"   @click="mess(ele.MasterID)"  :key="index" class="list_ele">
+      <img v-lazy="ele.CoverPhoto" />
       <span>{{ele.Name}}</span>
     </div>
   </div>
