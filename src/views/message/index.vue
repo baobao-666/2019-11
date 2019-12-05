@@ -1,9 +1,9 @@
 <template>
-  <div class="mess-page">
+  <div class="mess-page" v-if="(Object.keys(desclist).length)" >
     <header>
       <router-link class="img" tag="div" to="/cartmess">
-        <img :src="this.titImg" alt />
-        <span>{{list&&list.pic_group_count}}张图片</span>
+        <img v-lazy="desclist.Picture" alt />
+        <span>{{desclist.pic_group_count}}张图片</span>
       </router-link>
 
       <div class="text">
