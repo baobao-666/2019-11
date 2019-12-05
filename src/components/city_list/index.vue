@@ -2,7 +2,7 @@
   <div class="city_page">
     <div class="defaut_city">
       <div class="default_title">自动定位</div>
-      <div class="default_city">{{automatic}}</div>
+      <div class="default_city" @click="setcityblock(false)" >{{automatic}}</div>
     </div>
     <div class="city_item">
       <div class="province">省份</div> 

@@ -56,8 +56,7 @@ let mutations={
             /** 处理数据 */
             // 1.拿到年份
             let year = payload.data.list.map(item=>item.market_attribute.year);
-            let arr =[...new Set(year)]
-            state.year = state.year.concat(arr);
+            state.year = [...new Set(state.year.concat([...new Set(year)]))];;
             // 2.拿到当前选择年份的数据
             let currentList = [];
             if (state.current == '全部'){

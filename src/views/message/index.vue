@@ -41,7 +41,7 @@
         </div>
       </div>
     </header>
-    <div class="foot" @click="jump(list.SerialID)">
+    <div class="foot" @click="jump(desclist.SerialID)">
       <p>询问低价</p>
       <p>本地经销商为你报价</p>
     </div>
