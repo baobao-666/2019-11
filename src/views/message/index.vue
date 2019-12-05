@@ -1,10 +1,10 @@
 <template>
-  <div class="mess-page"  v-if="(Object.keys(desclist).length)" >
+  <div class="mess-page">
     <header>
-      <div class="img">
-        <img  v-lazy="desclist.Picture" alt />
-        <span>{{desclist.pic_group_count}}张图片</span>
-      </div>
+      <router-link class="img" tag="div" to="/cartmess">
+        <img :src="this.titImg" alt />
+        <span>{{list&&list.pic_group_count}}张图片</span>
+      </router-link>
 
       <div class="text">
         <div class="left">
@@ -49,7 +49,7 @@
 </template>
 <script>
 import axios from "axios";
-import { mapActions, mapMutations, mapState } from 'vuex';
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   data() {
@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCartMessSort:"CartMess/getCartMessSort"
+      getCartMessSort: "CartMess/getCartMessSort"
     }),
     cut(index) {
       console.log(index);
@@ -70,16 +70,16 @@ export default {
       this.$router.push({ path: "/carthome", query: { id } });
     }
   },
-  computed:{
-       ...mapState({
-         desclist:state=>state.CartMess.desclist,
-         current:state=>state.CartMess.current,
-         year:state=>state.CartMess.year,
-         currentList:state=>state.CartMess.currentList
-       })
+  computed: {
+    ...mapState({
+      desclist: state => state.CartMess.desclist,
+      current: state => state.CartMess.current,
+      year: state => state.CartMess.year,
+      currentList: state => state.CartMess.currentList
+    })
   },
   created() {
-    this.getCartMessSort(this.$route.query.id)
+    this.getCartMessSort(this.$route.query.id);
   }
 };
 </script>
@@ -113,12 +113,12 @@ export default {
     }
     span {
       position: absolute;
-      bottom: .15rem;
-      right: .3rem;
+      bottom: 0.15rem;
+      right: 0.3rem;
       background: rgba(0, 0, 0, 0.5);
-      border-radius: .3rem;
+      border-radius: 0.3rem;
       color: #fff;
-      padding: .1rem .2rem;
+      padding: 0.1rem 0.2rem;
     }
   }
   .text {
@@ -131,14 +131,14 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      line-height: .5rem;
-      padding-left: .2rem;
+      line-height: 0.5rem;
+      padding-left: 0.2rem;
       & > p:first-child {
         color: red;
         font-size: 0.4rem;
       }
       & > p:last-child {
-        font-size: .3rem;
+        font-size: 0.3rem;
         color: #ccc;
       }
     }
@@ -149,10 +149,10 @@ export default {
       justify-content: center;
       align-items: center;
       span {
-        padding: .2rem 1rem;
+        padding: 0.2rem 1rem;
         background: skyblue;
         color: #fff;
-        border-radius: .1rem;
+        border-radius: 0.1rem;
       }
     }
   }
@@ -164,14 +164,14 @@ export default {
   .c-type {
     width: 100%;
     background: #fff;
-    margin: .2rem 0 0 0;
+    margin: 0.2rem 0 0 0;
     height: 1rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: .4rem;
+    font-size: 0.4rem;
     & span:first-child {
-      padding: 0 .4rem 0 .3rem;
+      padding: 0 0.4rem 0 0.3rem;
       // color: skyblue;
     }
   }
@@ -180,49 +180,49 @@ export default {
     height: 3rem;
     background: #fff;
     & > p {
-      height:.5rem;
-      padding: 0 .2rem;
+      height: 0.5rem;
+      padding: 0 0.2rem;
       display: flex;
       justify-content: flex-start;
       align-items: center;
       color: #999;
-      font-size: .3rem;
+      font-size: 0.3rem;
       background: #f4f4f4;
     }
     ul {
       width: 100%;
-      height:2.3rem;
+      height: 2.3rem;
       .line > .one {
-        height:.8rem;
+        height: 0.8rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin: 0 .2rem;
+        margin: 0 0.2rem;
       }
       .line > .two {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        height: .4rem;
+        height: 0.4rem;
         color: #999;
 
-        padding: 0 .2rem;
+        padding: 0 0.2rem;
       }
       .line > .three {
-        height:.5rem;
-        padding: 0 .2rem;
+        height: 0.5rem;
+        padding: 0 0.2rem;
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        font-size: .3rem;
+        font-size: 0.3rem;
         color: #999;
         & > span:last-child {
           color: Red;
-          margin-left: .2rem;
+          margin-left: 0.2rem;
         }
       }
       button {
-        height: .83rem;
+        height: 0.83rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -230,7 +230,7 @@ export default {
         color: skyblue;
         border: 0;
         width: 100%;
-        font-size: .35rem;
+        font-size: 0.35rem;
         background: #fff;
         border-top: 1px solid #ccc;
       }
@@ -247,8 +247,8 @@ export default {
   background: skyblue;
   color: #fff;
   & > p:first-child {
-    font-size: .4rem;
-    margin-bottom:.1rem;
+    font-size: 0.4rem;
+    margin-bottom: 0.1rem;
   }
 }
 .active {

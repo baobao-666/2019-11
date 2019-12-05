@@ -38,9 +38,6 @@ const routes = [
       name:'cartstyle',
       component:()=>import('../views/cartmess/cartStyle/'),
       children:[]
-     },{
-       path:'/cartmess',
-       redirect:'/cartmess/cartcolor'
      }
    ]
  },
