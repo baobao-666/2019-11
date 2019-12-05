@@ -19,11 +19,11 @@
         <ul>
           <li>
             <span>姓名</span>
-            <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" />
+            <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" v-model="username" />
           </li>
           <li>
             <span>手机</span>
-            <input type="text" placeholder="输入你的手机号" maxlength="4" />
+            <input type="text" placeholder="输入你的手机号" maxlength="11" v-model="phone"/>
           </li>
           <li>
             <span>城市</span>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="quotation">
-        <button>询问最低价</button>
+        <button @click="inquiry">询问最低价</button>
       </div>
 
       <div class="foot">
@@ -60,7 +60,9 @@ export default {
   data() {
     return {
       list:[],
-      titImg:''
+      titImg:'',
+      username:'',
+      phone:''
     };
   },
   computed: {
@@ -75,7 +77,21 @@ export default {
     }),
     alerts() {
        this.setcityblock(true)
-    }
+    },
+
+  inquiry(){
+         
+      if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone))||!(/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,4}$/.test(this.username))){
+          alert("姓名或者手机号输入有误")    
+      } 
+
+
+
+
+  }
+
+
+
   },
   created() {
     
@@ -172,6 +188,7 @@ header {
         input {
           outline: none;
           border: 0;
+          text-align: right;
         }
       }
     }
