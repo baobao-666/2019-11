@@ -1,12 +1,15 @@
 <template>
   <div class="city-home">
     <header>
-      <p>可向多个商家咨询最低价，商家及时回复<span class="icon iconfont">&#xe72d;</span></p>
+      <p>
+        可向多个商家咨询最低价，商家及时回复
+        <span class="icon iconfont">&#xe72d;</span>
+      </p>
     </header>
     <div class="count">
       <div class="hover">
         <div class="img">
-          <img :src="this.titImg" alt="">
+          <img :src="this.titImg" alt />
         </div>
         <div class="text">
           <p>{{list&&list.BrandName}}-{{list&&list.AliasName}}</p>
@@ -23,11 +26,14 @@
           </li>
           <li>
             <span>手机</span>
-            <input type="text" placeholder="输入你的手机号" maxlength="11" v-model="phone"/>
+            <input type="text" placeholder="输入你的手机号" maxlength="11" v-model="phone" />
           </li>
           <li>
             <span>城市</span>
-            <input type="text" placeholder="输入你的城市" maxlength="4" />
+            <button @click="alerts">{{automatic}}</button>
+            <transition name="cityList">
+              <CityCode v-if="cityblock"></CityCode>
+            </transition>
           </li>
         </ul>
       </div>
@@ -40,17 +46,12 @@
         <p>选择报价经销商</p>
       </div>
     </div>
-
-    <button @click="alerts">{{automatic}}</button>
-    <transition name="cityList">
-      <CityCode v-if="cityblock"></CityCode>
-    </transition>
   </div>
 </template>
 <script>
 import CityCode from "@/components/city_list/";
-import axios from 'axios'
-import { mapState, mapMutations } from 'vuex';
+import axios from "axios";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   props: {},
@@ -59,43 +60,38 @@ export default {
   },
   data() {
     return {
-      list:[],
-      titImg:'',
-      username:'',
-      phone:''
+      list: [],
+      titImg: "",
+      username: "",
+      phone: ""
     };
   },
   computed: {
     ...mapState({
-      cityblock:state=>state.mess.cityblock,
-      automatic:state=>state.mess.automatic
+      cityblock: state => state.mess.cityblock,
+      automatic: state => state.mess.automatic
     })
   },
   methods: {
     ...mapMutations({
-       setcityblock:"mess/setcityblock"
+      setcityblock: "mess/setcityblock"
     }),
     alerts() {
-       this.setcityblock(true)
+      this.setcityblock(true);
     },
 
-  inquiry(){
-         
-      if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone))||!(/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,4}$/.test(this.username))){
-          alert("姓名或者手机号输入有误")    
-      } 
-
-
-
-
-  }
-
-
-
+    inquiry() {
+      if (
+        !/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone) ||
+        !/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,4}$/.test(this.username)
+      ) {
+        alert("姓名或者手机号输入有误");
+      }
+    }
   },
   created() {
-    
-    this.$http.get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
+    this.$http
+      .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
         params: { SerialID: this.$route.query.id }
       })
       .then(res => {
@@ -118,13 +114,13 @@ export default {
   display: flex;
   flex-direction: column;
   background: #f4f4f4;
-  font-size: .33rem;
+  font-size: 0.33rem;
 }
 header {
   background: #79cd92;
-  height: .6rem;
+  height: 0.6rem;
   text-align: center;
-  line-height: .6rem;
+  line-height: 0.6rem;
   p {
     color: #fff;
   }
@@ -141,54 +137,64 @@ header {
       width: 40%;
       position: relative;
       overflow: hidden;
-      img{
-      position: absolute;
-      max-width: 100%;
-      max-height: 100%;
-      outline: none;
-      top: 50%;
-      left:50%;
-      transform: translate(-50%,-50%)
+      img {
+        position: absolute;
+        max-width: 100%;
+        max-height: 100%;
+        outline: none;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
     .text {
       width: 60%;
       height: 100%;
       display: flex;
-      line-height: .43rem;
+      line-height: 0.43rem;
       flex-direction: column;
       justify-content: flex-start;
       & p:last-child {
-        font-size: .3rem;
+        font-size: 0.3rem;
       }
     }
   }
   .info {
     p {
-      height: .5rem;
+      height: 0.5rem;
       background: #eee;
       font-size: 14px;
-      line-height: .5rem;
+      line-height: 0.5rem;
       color: #666;
-      padding-left: .2rem;
+      padding-left: 0.2rem;
     }
     ul {
-      padding: 0 .2rem;
+      padding: 0 0.2rem;
       background: #fff;
       li {
-        height: .9rem;
-        line-height: .9rem;
+        height: 0.9rem;
+        line-height: 0.9rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #ccc;
         span {
-          font-size: .3rem;
+          font-size: 0.3rem;
         }
         input {
           outline: none;
           border: 0;
           text-align: right;
+        }
+      }
+      & li:last-child{
+        button{
+          max-width: 100%;
+          max-height: 100%;
+          outline: none;
+          border: 0;
+          background:#fff;
+          color:#999;
         }
       }
     }
@@ -202,7 +208,7 @@ header {
     background: #fff;
     button {
       width: 80%;
-      height: .7rem;
+      height: 0.7rem;
       background: #3aacff;
       outline: none;
       border: 0;
@@ -213,12 +219,12 @@ header {
     }
   }
   .foot {
-    height: .3rem;
-    padding: 0 .2rem;
-    font-size: .31rem;
+    height: 0.3rem;
+    padding: 0 0.2rem;
+    font-size: 0.31rem;
     background: #eee;
     color: #666;
-    line-height: .3rem;
+    line-height: 0.3rem;
   }
 }
 // 城市列表动画
