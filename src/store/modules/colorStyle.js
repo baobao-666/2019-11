@@ -1,18 +1,15 @@
-import {getAllColor} from '@/services/index'
+import {getAllColor,getCartColorList} from '@/services/index'
 
 
 const  state={
-    ColorList:[],//全部数据
-    title:[ //上边路由跳转
-        {
-            text:"全部颜色",
-             path:'/cartmess/cartcolor', 
-        },
-         {
-            text:"全部款式",
-            path:'/cartmess/cartstyle',
-        }
-    ]
+    ColorList:[],//全部数据图片
+    StyleFlag:false,
+    ColorFlag:false,
+    Color:[],//颜色数据
+    AllColor:[],
+    ColorKey:[],
+    Style:[],//样式数据
+    CurIndex:0
 }
 const  mutations={
     // 设置全部数据
@@ -24,17 +21,39 @@ const  mutations={
             })
             return item
         })    
+    },
+    setWareHouseStyle(state,flag){
+        state.StyleFlag=flag
+    },
+    setWareHouseColor(state,flag){
+        state.ColorFlag=flag
+    },
+    setColorKey(state,data){
+        state.AllColor=data
+        state.ColorKey=Object.keys(data)
+        state.Color=state.AllColor[state.ColorKey[state.CurIndex]]
+    },
+    setColor(state,index){
+        state.CurIndex=index
+        state.Color=state.AllColor[state.ColorKey[state.CurIndex]]
     }
 }
 
 const actions={
-    // 获取全部数据
+    // 获取全部图片数据
      async getAllColor({commit},id){
         let res=await getAllColor(id)
         if(res.code===1){
           commit("setColorList",res.data)
         }
+      },
+    // 获取全部颜色数据
+    async getCartColorList({commit},id){
+      let res= await getCartColorList(id)
+      if(res.code===1){ 
+        commit("setColorKey",res.data)
       }
+    }
 }
 
 export default {
