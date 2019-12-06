@@ -35,7 +35,7 @@
                 <span>指导价{{ item.list[0].market_attribute.official_refer_price }}</span>
                 <span>{{ item.list[0].market_attribute.dealer_price }}起</span>
               </p>
-              <button>询问底价</button>
+              <button @click="jump(desclist.SerialID)">询问底价</button>
             </li>
           </ul>
         </div>
