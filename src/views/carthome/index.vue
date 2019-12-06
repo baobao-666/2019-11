@@ -34,6 +34,7 @@
             <transition name="cityList">
               <CityCode v-if="cityblock"></CityCode>
             </transition>
+            
           </li>
         </ul>
       </div>

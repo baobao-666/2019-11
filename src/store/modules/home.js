@@ -10,7 +10,7 @@ const state={
 }
 const  mutations={
      setAllList(state, payload) {
-         state.allList=  payload
+         state.allList= payload
       },
       setArr(state,data) {
         state.arr = ['#'].concat([...new Set(data.map(item=>{
