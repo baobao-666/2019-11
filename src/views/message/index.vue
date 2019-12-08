@@ -35,7 +35,7 @@
                 <span>指导价{{ item.list[0].market_attribute.official_refer_price }}</span>
                 <span>{{ item.list[0].market_attribute.dealer_price }}起</span>
               </p>
-              <button @click="jump(desclist.SerialID)">询问底价</button>
+              <button @click="jump(item.list[0].car_id)">询问底价</button>
             </li>
           </ul>
         </div>
@@ -60,6 +60,7 @@ export default {
   methods: {
     ...mapActions({
       getCartMessSort: "CartMess/getCartMessSort",
+      getCityId:"CartMess/getCityId"
     }),
     ...mapMutations({backRoll:"CartMess/backRoll"}),
     //tab切换
@@ -69,8 +70,8 @@ export default {
       this.getCartMessSort(this.$route.query.id);
     },
     jump(id) {
-      console.log("id...", id);
-      this.$router.push({ path: "/carthome", query: { id } });
+      console.log(this.CityId)
+      // this.$router.push({ path: "/carthome", query: { id,CityId:this.CityId } });
     }
   },
   computed: {
@@ -78,11 +79,13 @@ export default {
       desclist: state => state.CartMess.desclist,
       current: state => state.CartMess.current,
       year: state => state.CartMess.year,
-      currentList: state => state.CartMess.currentList
+      currentList: state => state.CartMess.currentList,
+      CityId: state => state.CartMess.CityId
     })
   },
   created() {
     this.getCartMessSort(this.$route.query.id);
+    this.getCityId()
   }
 };
 </script>

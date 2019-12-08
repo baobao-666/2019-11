@@ -52,7 +52,7 @@ export default {
       console.log(item);
       this.idScroll = item;
       document.querySelector(".list-page").scrollTop = document.querySelector(
-        `#${item}`
+        `#${item}`  
       ).offsetTop;
     }
   },

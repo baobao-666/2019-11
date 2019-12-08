@@ -1,10 +1,11 @@
-import {getCartMessSort} from '@/services/index'
+import {getCartMessSort,getCityId} from '@/services/index'
 
 let state={
     desclist: {},   // 元数据
     current: '全部',    // 当前选择年份 
     year: ['全部'],     // 所有的年份
     currentList: [],    // 当前年份的车款数据 
+    CityId:""
 }
 
 // 给车款排序
@@ -34,7 +35,7 @@ function formatCarList(list){
     let newList = [];
     
     // 遍历，根据key把数据聚合一下
-    list.forEach(item=>{
+    list.forEach(item=>{//目标元素位置
         let index = newList.findIndex(value=>value.key == item.key);
         if (index !== -1){
             newList[index].list.push(item);
@@ -79,6 +80,9 @@ let mutations={
     },
     backRoll(state,payload){
         state.current=payload;
+    },
+    updateCityId(state,payload){
+        state.CityId =payload.CityID
     }
 }
 
@@ -88,7 +92,17 @@ let actions={
        if(res.code===1){
         commit("updateDesclist",res)
        }
-    }
+    },
+    async getCityId({commit},id){
+        let res = await getCityId(id)
+        console.log(res.data)
+        if(res.code===1){
+         commit("updateCityId",res.data)
+         
+        }
+     }
+
+    
 
 }
 
