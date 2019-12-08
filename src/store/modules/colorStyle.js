@@ -9,7 +9,8 @@ const  state={
     AllColor:[],
     ColorKey:[],
     Style:[],//样式数据
-    CurIndex:0
+    CurIndex:0,
+    CurInd:0
 }
 const  mutations={
     // 设置全部数据
@@ -36,23 +37,29 @@ const  mutations={
     setColor(state,index){
         state.CurIndex=index
         state.Color=state.AllColor[state.ColorKey[state.CurIndex]]
+    },
+    setID(state,index){
+      state.CurInd=index
     }
 }
 
 const actions={
     // 获取全部图片数据
      async getAllColor({commit},id){
+         console.log(id);
         let res=await getAllColor(id)
         if(res.code===1){
           commit("setColorList",res.data)
+          console.log(res.data);
+          
         }
       },
     // 获取全部颜色数据
     async getCartColorList({commit},id){
-      let res= await getCartColorList(id)
-      if(res.code===1){ 
-        commit("setColorKey",res.data)
-      }
+            let res= await getCartColorList(id);
+            if(res.code===1){ 
+                commit("setColorKey",res.data)
+              }
     }
 }
 

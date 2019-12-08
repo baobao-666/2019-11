@@ -7,7 +7,7 @@
          <span  :class="{active:CurIndex===index}" @click="setYear(index)" v-for="(item,index) in ColorKey" :key="index">{{item}}</span>
       </div>
       <div class="color_cont">
-        <li v-for="(item,index) in Color" :key="index" >
+        <li v-for="(item,index) in Color" :key="index" @click="setColorList(item.ColorId)" >
             <span :style="{background:item.Value}" ></span>
             {{item.Name}}
         </li>
@@ -27,7 +27,9 @@ export default {
  },
  methods:{
      ...mapActions({
-         getCartColorList:"ColorStyle/getCartColorList"
+         getCartColorList:"ColorStyle/getCartColorList",
+         getAllColor:"ColorStyle/getAllColor"
+
      }),
      ...mapMutations({
          setColor:"ColorStyle/setColor",
@@ -38,6 +40,9 @@ export default {
      },
      setFlag(){
        this.setWareHouseColor(false)
+     },
+     setColorList(id){
+         this.getAllColor({id,SireID:2593})
      }
  },
  created(){
