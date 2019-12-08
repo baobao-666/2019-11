@@ -46,12 +46,10 @@ const  mutations={
 const actions={
     // 获取全部图片数据
      async getAllColor({commit},id){
-         console.log(id);
         let res=await getAllColor(id)
         if(res.code===1){
           commit("setColorList",res.data)
           console.log(res.data);
-          
         }
       },
     // 获取全部颜色数据

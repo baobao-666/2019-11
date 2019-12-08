@@ -28,7 +28,6 @@ import CartStyleCode from '@/components/cartmess/style_list/'
 
 import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
-  props: {},
   components: {
      ImgCode,
      ColorCode,
@@ -62,7 +61,7 @@ export default {
     }
   },
   created() {
-    this.getAllColor(2593)
+    this.getAllColor(this.$route.query.id)
   }
 };
 </script>

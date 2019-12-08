@@ -46,7 +46,7 @@ export default {
      }
  },
  created(){
-     this.getCartColorList(2593)
+     this.getCartColorList(this.$route.query.id)
      this.setColor(this.CurIndex)
  }
 }
