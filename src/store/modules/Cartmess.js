@@ -1,4 +1,4 @@
-import {getCartMessSort,getCityId} from '@/services/index'
+import {getCartMessSort} from '@/services/index'
 
 let state={
     desclist: {},   // 元数据
@@ -93,17 +93,14 @@ let actions={
         commit("updateDesclist",res)
        }
     },
-    async getCityId({commit},id){
-        let res = await getCityId(id)
-        console.log(res.data)
-        if(res.code===1){
-         commit("updateCityId",res.data)
+    // async getCityId({commit},id){
+    //     let res = await getCityId(id)
+    //     console.log(res.data)
+    //     if(res.code===1){
+    //      commit("updateCityId",res.data)
          
-        }
-     }
-
-    
-
+    //     }
+    //  }
 }
 
 export default{

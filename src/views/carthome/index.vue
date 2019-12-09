@@ -12,7 +12,7 @@
           <img :src="this.titImg" alt />
         </div>
         <div class="text">
-          <p>{{list&&list.BrandName}}-{{list&&list.AliasName}}</p>
+          <!-- <p>{{list&&list.BrandName}}-{{list&&list.AliasName}}</p> -->
           <!-- <p>{{list.list&&list.list[0].car_name}}</p> -->
         </div>
       </div>
@@ -32,7 +32,7 @@
             <span>城市</span>
             <button @click="alerts">{{automatic}}</button>
             <transition name="cityList">
-              <CityCode v-if="cityblock"></CityCode>
+              <CityCode v-if="cityblock" ></CityCode>
             </transition>
             
           </li>
@@ -92,19 +92,7 @@ export default {
     }
   },
   created() {
-    this.$http
-      .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
-        params: { SerialID: this.$route.query.id }
-      })
-      .then(res => {
-        // console.log("Homeres==>",res);
-        if (res.data.code === 1) {
-          this.titImg = res.data.data.Picture;
-          this.list = res.data.data;
-          console.log(this.list);
-        }
-      });
-    // console.log(this.$route.query.id)
+      console.log(this.$route.query.item)
   },
   mounted() {}
 };
