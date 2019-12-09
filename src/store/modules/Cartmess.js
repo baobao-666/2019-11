@@ -1,4 +1,4 @@
-import {getCartMessSort} from '@/services/index'
+import {getCartMessSort,getCityId} from '@/services/index'
 
 let state={
     desclist: {},   // 元数据
@@ -80,6 +80,7 @@ let mutations={
     backRoll(state,payload){
         state.current=payload;
     }
+    
   
 }
 
@@ -89,6 +90,10 @@ let actions={
        if(res.code===1){
         commit("updateDesclist",res)
        }
+    },
+    async getCityId({commit},id){
+        let res = await this.getCityId(id)
+        console.log(res)
     }
 
 }

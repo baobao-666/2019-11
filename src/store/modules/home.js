@@ -47,7 +47,6 @@ const actions={
     async getdrawerList({commit},payload){
        let res =await getdrawerList(payload)
        await commit("setdrawerList",res.data)
-   
     }
 }
 export default {

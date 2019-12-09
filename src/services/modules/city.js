@@ -6,3 +6,4 @@ export let getcityList=()=>{
 export let getcityOneList=(id)=>{
     return request('/v1-city-alllist.html',{params:{provinceid:id}})
 } 
+

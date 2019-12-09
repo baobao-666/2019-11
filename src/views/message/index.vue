@@ -35,7 +35,7 @@
                 <span>指导价{{ ele.market_attribute.official_refer_price }}</span>
                 <span>{{ ele.market_attribute.dealer_price }}起</span>
               </p>
-              <button @click="jump()">询问底价</button>
+              <button @click="jump(desclist.SerialID)">询问底价</button>
             </li>
           </ul>
         </div>
@@ -83,12 +83,10 @@ export default {
       current: state => state.CartMess.current,
       year: state => state.CartMess.year,
       currentList: state => state.CartMess.currentList,
-      // CityId: state => state.CartMess.CityId
     })
   },
   created() {
     this.getCartMessSort(this.$route.query.id);
-    // this.getCityId()
   }
 };
 </script>

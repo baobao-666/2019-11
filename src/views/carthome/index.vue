@@ -46,13 +46,16 @@
       <div class="foot">
         <p>选择报价经销商</p>
       </div>
+
+      <!-- 下面经销商 -->
+
     </div>
   </div>
 </template>
 <script>
 import CityCode from "@/components/city_list/";
 import axios from "axios";
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   props: {},
@@ -76,6 +79,9 @@ export default {
   methods: {
     ...mapMutations({
       setcityblock: "mess/setcityblock"
+    }),
+    ...mapActions({
+      getCityId:'Cartmess/getCityId'
     }),
     alerts() {
       this.setcityblock(true);
@@ -104,6 +110,7 @@ export default {
         }
       });
     // console.log(this.$route.query.id)
+    this.getCityId()
   },
   mounted() {}
 };
