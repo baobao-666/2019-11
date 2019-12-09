@@ -13,7 +13,7 @@
         </div>
         <div class="text">
           <p>{{list&&list.BrandName}}-{{list&&list.AliasName}}</p>
-          <!-- <p>{{list.list&&list.list[0].car_name}}</p> -->
+          <p>{{list.list&&list.list[0].car_name}}</p>
         </div>
       </div>
 
@@ -45,7 +45,6 @@
 
       <div class="foot">
         <p>选择报价经销商</p>
-
       </div>
     </div>
   </div>
@@ -97,7 +96,7 @@ export default {
         params: { SerialID: this.$route.query.id }
       })
       .then(res => {
-        // console.log("Homeres==>",res);
+        console.log(res);
         if (res.data.code === 1) {
           this.titImg = res.data.data.Picture;
           this.list = res.data.data;

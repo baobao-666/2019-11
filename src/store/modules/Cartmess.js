@@ -5,7 +5,10 @@ let state={
     current: '全部',    // 当前选择年份 
     year: ['全部'],     // 所有的年份
     currentList: [],    // 当前年份的车款数据 
+<<<<<<< HEAD
    
+=======
+>>>>>>> b13ed1b6dfdc41762e186822b4d076373924f0ce
 }
 
 // 给车款排序
@@ -35,7 +38,7 @@ function formatCarList(list){
     let newList = [];
     
     // 遍历，根据key把数据聚合一下
-    list.forEach(item=>{//目标元素位置
+    list.forEach(item=>{
         let index = newList.findIndex(value=>value.key == item.key);
         if (index !== -1){
             newList[index].list.push(item);
@@ -91,8 +94,6 @@ let actions={
         commit("updateDesclist",res)
        }
     }
-   
-    
 
 }
 
