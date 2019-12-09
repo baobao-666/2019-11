@@ -7,7 +7,7 @@
          <span  :class="{active:CurIndex===index}" @click="setYear(index)" v-for="(item,index) in ColorKey" :key="index">{{item}}</span>
       </div>
       <div class="color_cont">
-        <li v-for="(item,index) in Color" :key="index" @click="setColorList(item.ColorId)" >
+        <li v-for="(item,index) in Color" :key="index" @click="setColorList(item.ColorId,item.Name)" >
             <span :style="{background:item.Value}" ></span>
             {{item.Name}}
         </li>
@@ -34,7 +34,8 @@ export default {
      }),
      ...mapMutations({
          setColor:"ColorStyle/setColor",
-         setWareHouseColor:"ColorStyle/setWareHouseColor"
+         setWareHouseColor:"ColorStyle/setWareHouseColor",
+         setColorInner:"ColorStyle/setColorInner"
      }),
      setYear(index){
       this.setColor(index)
@@ -42,7 +43,8 @@ export default {
      setFlag(){
        this.setWareHouseColor(false)
      },
-     setColorList(id){
+     setColorList(id,inner){
+         this.setColorInner(inner)
          this.getColorList({id,SireID:this.$route.query.id});
          this.setWareHouseColor(false)
 

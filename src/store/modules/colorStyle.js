@@ -1,4 +1,4 @@
-import {getAllColor,getCartColorList,getColorList} from '@/services/index'
+import {getAllColor,getCartColorList,getColorList,getStyleList} from '@/services/index'
 
 
 const  state={
@@ -10,7 +10,9 @@ const  state={
     ColorKey:[],
     Style:[],//样式数据
     CurIndex:0,
-    CurInd:0
+    CurInd:0,
+    ColorInner:"颜色",
+    styleInner:"款式"
 }
 const  mutations={
     // 设置全部数据
@@ -40,6 +42,12 @@ const  mutations={
     },
     setID(state,index){
       state.CurInd=index
+    },
+    setColorInner(state,inner){
+        state.ColorInner=inner
+    },
+    setStyleInner(state,inner){
+        state.styleInner=inner
     }
 }
 
@@ -61,6 +69,13 @@ const actions={
     // 根据传来的样式或颜色筛选图片列表
     async getColorList({commit},id){
         let res = await getColorList(id)
+        if(res.code===1){
+            commit("setColorList",res.data)
+          }
+    },
+    async getStyleList({commit},id){
+        let res = await getStyleList(id)
+        console.log(res);
         if(res.code===1){
             commit("setColorList",res.data)
           }

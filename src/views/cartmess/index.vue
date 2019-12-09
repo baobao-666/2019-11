@@ -1,8 +1,8 @@
 <template>
   <div class="cart-mess">
       <div class="types">
-         <span @click="setColorFlag" class="icon iconfont">颜色 &#xe617;</span>
-         <span @click="setStyleFlag" class="icon iconfont">车款 &#xe617;</span>
+         <span @click="setColorFlag" class="icon iconfont">{{ColorInner}} &#xe617;</span>
+         <span @click="setStyleFlag" class="icon iconfont">{{styleInner}} &#xe617;</span>
       </div>
       <div class="cart-wrap">
          <ImgCode v-for="(item,index) in ColorList" :key="index" :items="item" ></ImgCode>
@@ -42,7 +42,9 @@ export default {
     ...mapState({
        ColorList:state=>state.ColorStyle.ColorList,
        ColorFlag:state=>state.ColorStyle.ColorFlag,
-       StyleFlag:state=>state.ColorStyle.StyleFlag
+       StyleFlag:state=>state.ColorStyle.StyleFlag,
+       ColorInner:state=>state.ColorStyle.ColorInner,
+       styleInner:state=>state.ColorStyle.styleInner
     })
   },
   methods: {
@@ -62,7 +64,7 @@ export default {
     }
   },
   created() {
-    this.getAllColor(this.$route.query.id),
+    this.getAllColor(this.$route.query.id);
     this.getCartMessSort(this.$route.query.id);
   }
 };

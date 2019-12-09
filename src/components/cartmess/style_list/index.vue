@@ -14,8 +14,8 @@
         <div class="item" v-for="(item, index) in currentList" :key="index" >
           <p>{{item.key}}</p>
           <ul>
-            <li class="line"  @click="jumps(ele.car_id)" v-for="(ele,index) in item.list"  :key="index"  >
-              <p class="one">{{ele.market_attribute.year}}款{{ item.list[0].car_name }}</p>
+            <li class="line"  @click="jumps(ele.car_id,ele.car_name)" v-for="(ele,index) in item.list"  :key="index"  >
+              <p class="one">{{ele.market_attribute.year}}款{{ele.car_name}}</p>
               <p class="two">{{ ele.trans_type}}</p>
               <p class="three">
                 <span>指导价{{ ele.market_attribute.official_refer_price }}</span>
@@ -41,11 +41,13 @@ export default {
     methods:{
         ...mapActions({
             getCartColorList:"ColorStyle/getCartColorList",
-            getColorList:"ColorStyle/getColorList"
+            getStyleList:"ColorStyle/getStyleList"
+
         }),
         ...mapMutations({
             setWareHouseStyle:"ColorStyle/setWareHouseStyle",
-            setID:"ColorStyle/setID"
+            setID:"ColorStyle/setID",
+            setStyleInner:"ColorStyle/setStyleInner"
         }),
         setFlag(){
              this.setWareHouseStyle(false)
@@ -53,9 +55,10 @@ export default {
         cut(index){
              this.setID(index)
         },
-        jumps(car_id){
-             this.getColorList({car_id,SireID:this.$route.query.id});
+        jumps(car_id,inner){
+             this.getStyleList({car_id,SireID:this.$route.query.id});
              this.setWareHouseStyle(false)
+             this.setStyleInner(inner)
         }
     },
     created(){
