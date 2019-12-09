@@ -47,7 +47,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getAllColor:"ColorStyle/getAllColor"
+      getAllColor:"ColorStyle/getAllColor",
+      getCartMessSort: "CartMess/getCartMessSort"
     }),
     ...mapMutations({
       setWareHouseStyle:"ColorStyle/setWareHouseStyle",
@@ -61,7 +62,8 @@ export default {
     }
   },
   created() {
-    this.getAllColor(this.$route.query.id)
+    this.getAllColor(this.$route.query.id),
+    this.getCartMessSort(this.$route.query.id);
   }
 };
 </script>

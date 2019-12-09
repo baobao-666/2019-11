@@ -1,4 +1,4 @@
-import {getAllColor,getCartColorList} from '@/services/index'
+import {getAllColor,getCartColorList,getColorList} from '@/services/index'
 
 
 const  state={
@@ -49,7 +49,6 @@ const actions={
         let res=await getAllColor(id)
         if(res.code===1){
           commit("setColorList",res.data)
-          console.log(res.data);
         }
       },
     // 获取全部颜色数据
@@ -58,6 +57,13 @@ const actions={
             if(res.code===1){ 
                 commit("setColorKey",res.data)
               }
+    },
+    // 根据传来的样式或颜色筛选图片列表
+    async getColorList({commit},id){
+        let res = await getColorList(id)
+        if(res.code===1){
+            commit("setColorList",res.data)
+          }
     }
 }
 

@@ -28,7 +28,8 @@ export default {
  methods:{
      ...mapActions({
          getCartColorList:"ColorStyle/getCartColorList",
-         getAllColor:"ColorStyle/getAllColor"
+         getAllColor:"ColorStyle/getAllColor",
+         getColorList:"ColorStyle/getColorList"
 
      }),
      ...mapMutations({
@@ -42,7 +43,9 @@ export default {
        this.setWareHouseColor(false)
      },
      setColorList(id){
-         this.getAllColor({id,SireID:2593})
+         this.getColorList({id,SireID:this.$route.query.id});
+         this.setWareHouseColor(false)
+
      }
  },
  created(){

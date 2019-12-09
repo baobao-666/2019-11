@@ -11,15 +11,15 @@
             @click="cut(index,item)"
           >{{item}}</span>
         </div>
-        <div class="item" v-for="(item, index) in currentList" :key="index">
+        <div class="item" v-for="(item, index) in currentList" :key="index" >
           <p>{{item.key}}</p>
           <ul>
-            <li class="line">
-              <p class="one">{{item.list[0].market_attribute.year}}款{{ item.list[0].car_name }}</p>
-              <p class="two">{{ item.list[0].trans_type }}</p>
+            <li class="line"  @click="jumps(ele.car_id)" v-for="(ele,index) in item.list"  :key="index"  >
+              <p class="one">{{ele.market_attribute.year}}款{{ item.list[0].car_name }}</p>
+              <p class="two">{{ ele.trans_type}}</p>
               <p class="three">
-                <span>指导价{{ item.list[0].market_attribute.official_refer_price }}</span>
-                <span>{{ item.list[0].market_attribute.dealer_price }}起</span>
+                <span>指导价{{ ele.market_attribute.official_refer_price }}</span>
+                <span>{{ ele.market_attribute.dealer_price }}起</span>
               </p>
             </li>
           </ul>
@@ -40,7 +40,8 @@ export default {
         },
     methods:{
         ...mapActions({
-            getCartColorList:"ColorStyle/getCartColorList"
+            getCartColorList:"ColorStyle/getCartColorList",
+            getColorList:"ColorStyle/getColorList"
         }),
         ...mapMutations({
             setWareHouseStyle:"ColorStyle/setWareHouseStyle",
@@ -51,10 +52,14 @@ export default {
         },
         cut(index){
              this.setID(index)
+        },
+        jumps(car_id){
+             this.getColorList({car_id,SireID:this.$route.query.id});
+             this.setWareHouseStyle(false)
         }
     },
     created(){
-        this.getCartColorList(2593)
+        this.getCartColorList()
     }
 }
 </script>
@@ -66,6 +71,7 @@ export default {
     right: 0;
     bottom: 0;
     background: #f4f4f4;
+    overflow-y: auto;
 }
 .color_header{
     width: 100%;
@@ -99,7 +105,6 @@ export default {
   }
   .item {
     width: 100%;
-    height: 3rem;
     background: #fff;
     & > p {
       height: 0.5rem;
@@ -113,7 +118,11 @@ export default {
     }
     ul {
       width: 100%;
-      height: 2.3rem;
+      .line{
+        height: 2.3rem;
+        height: 100%;
+        border-bottom: .1rem solid #f4f4f4;
+      }
       .line > .one {
         height: 0.8rem;
         display: flex;
