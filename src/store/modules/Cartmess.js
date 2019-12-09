@@ -1,11 +1,11 @@
-import {getCartMessSort,getCityId} from '@/services/index'
+import {getCartMessSort} from '@/services/index'
 
 let state={
     desclist: {},   // 元数据
     current: '全部',    // 当前选择年份 
     year: ['全部'],     // 所有的年份
     currentList: [],    // 当前年份的车款数据 
-    CityId:""
+   
 }
 
 // 给车款排序
@@ -80,10 +80,8 @@ let mutations={
     },
     backRoll(state,payload){
         state.current=payload;
-    },
-    updateCityId(state,payload){
-        state.CityId =payload.CityID
     }
+  
 }
 
 let actions={
@@ -92,16 +90,8 @@ let actions={
        if(res.code===1){
         commit("updateDesclist",res)
        }
-    },
-    async getCityId({commit},id){
-        let res = await getCityId(id)
-        console.log(res.data)
-        if(res.code===1){
-         commit("updateCityId",res.data)
-         
-        }
-     }
-
+    }
+   
     
 
 }

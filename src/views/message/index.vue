@@ -28,14 +28,14 @@
         <div class="item" v-for="(item, index) in currentList" :key="index">
           <p>{{item.key}}</p>
           <ul>
-            <li class="line">
-              <p class="one">{{item.list[0].market_attribute.year}}款{{ item.list[0].car_name }}</p>
-              <p class="two">{{ item.list[0].trans_type }}</p>
+            <li class="line" v-for="(ele,index) in item.list" :key="index">
+              <p class="one">{{ele.market_attribute.year}}款{{ ele.car_name }}</p>
+              <p class="two">{{ ele.trans_type }}</p>
               <p class="three">
-                <span>指导价{{ item.list[0].market_attribute.official_refer_price }}</span>
-                <span>{{ item.list[0].market_attribute.dealer_price }}起</span>
+                <span>指导价{{ ele.market_attribute.official_refer_price }}</span>
+                <span>{{ ele.market_attribute.dealer_price }}起</span>
               </p>
-              <button @click="jump(item.list[0].car_id)">询问底价</button>
+              <button @click="jump(ele.car_id)">询问底价</button>
             </li>
           </ul>
         </div>
@@ -59,8 +59,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCartMessSort: "CartMess/getCartMessSort",
-      getCityId:"CartMess/getCityId"
+      getCartMessSort: "CartMess/getCartMessSort"
+  
     }),
     ...mapMutations({backRoll:"CartMess/backRoll"}),
     //tab切换
@@ -83,12 +83,12 @@ export default {
       current: state => state.CartMess.current,
       year: state => state.CartMess.year,
       currentList: state => state.CartMess.currentList,
-      CityId: state => state.CartMess.CityId
+    
     })
   },
   created() {
     this.getCartMessSort(this.$route.query.id);
-    this.getCityId()
+   
   }
 };
 </script>
@@ -181,16 +181,16 @@ export default {
     font-size: 0.4rem;
     span{
        margin-right:.2rem;
+       &.active {
+      color: skyblue;
+     }
     }
     & span:first-child {
       padding-left:0.35rem;
-     
-      // color: skyblue;
     }
   }
   .item {
     width: 100%;
-    height: 3rem;
     background: #fff;
     & > p {
       height: 0.5rem;
@@ -204,7 +204,11 @@ export default {
     }
     ul {
       width: 100%;
-      height: 2.3rem;
+      .line{
+        height: 2.3rem;
+        height: 100%;
+        border-bottom: .1rem solid #f4f4f4;
+      }
       .line > .one {
         height: 0.8rem;
         display: flex;
@@ -233,6 +237,8 @@ export default {
           color: Red;
           margin-left: 0.2rem;
         }
+     }
+  
       }
       button {
         height: 0.83rem;
@@ -249,7 +255,7 @@ export default {
       }
     }
   }
-}
+
 .foot {
   display: flex;
   width: 100%;
