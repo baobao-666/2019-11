@@ -4,7 +4,7 @@
           全部颜色
       </div>
       <div class="color_nav">
-         <span  :class="{active:CurIndex===index}" @click="setYear(index)" v-for="(item,index) in ColorKey" :key="index">{{item}}</span>
+         <span  :class="{active:CurIndex === index}" @click="setYear(index)" v-for="(item,index) in ColorKey" :key="index">{{item}}</span>
       </div>
       <div class="color_cont">
         <li v-for="(item,index) in Color" :key="index" @click="setColorList(item.ColorId,item.Name)" >

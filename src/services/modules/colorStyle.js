@@ -6,7 +6,7 @@ export let getAllColor=(id)=>{
 }
 export let getColorList=(id)=>{
            if(id.id && id.SireID){
-                   return request('/v2-car-getImageList.html',{params:{SerialID:id.SireID,ColorID:id.id}})
+                return request('/v2-car-getImageList.html',{params:{SerialID:id.SireID,ColorID:id.id}})
            }
 }
 export let getStyleList=(id)=>{
