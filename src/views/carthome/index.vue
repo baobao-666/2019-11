@@ -49,7 +49,20 @@
       </div>
 
       <!-- 下面经销商 -->
-
+      <!-- {{arrs}} -->
+        <div class="arrs">
+          <div class="dealer" v-for="(item,index) in arrs" :key="index">
+            <div class="left">
+                  <input type="checkbox" >
+            </div>
+            <div class="right">
+                  <p>{{item.dealerShortName}}</p>
+                  <p>{{item.address}}</p>
+            </div>
+            <span class="money">{{item.promotePrice}}万</span>
+            <span class="line">售{{item.saleRange}}</span>
+          </div>
+        </div>
     </div>
   </div>
 </template>
@@ -74,23 +87,22 @@ export default {
   computed: {
     ...mapState({
       cityblock: state => state.mess.cityblock,
-      automatic: state => state.mess.automatic
+      automatic: state => state.mess.automatic,
+      arrs:state=>state.CartMess.arrs
     })
   },
   methods: {
     ...mapActions({
-         getautomatic:"mess/getautomatic"
+        getautomatic:"mess/getautomatic",
+        getCityId:'CartMess/getCityId'
     }),
     ...mapMutations({
-      setcityblock: "mess/setcityblock"
-    }),
-    ...mapActions({
-      getCityId:'Cartmess/getCityId'
+        setcityblock: "mess/setcityblock",
+        setarr:"CartMess/setarr"
     }),
     alerts() {
-      this.setcityblock(true);
+        this.setcityblock(true);
     },
-
     inquiry() {
       if (
         !/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone) ||
@@ -106,21 +118,18 @@ export default {
         params: { SerialID: this.$route.query.id }
       })
       .then(res => {
-        console.log(res);
         if (res.data.code === 1) {
           this.titImg = res.data.data.Picture;
           this.list = res.data.data;
-          console.log(this.list);
         }
       });
-<<<<<<< HEAD
-    // console.log(this.$route.query.id)
-    this.getCityId()
-=======
-      this.getautomatic()
->>>>>>> master
+      let SerialID = localStorage.getItem('SerialID');
+      this.getautomatic();
+      this.getCityId(SerialID);
+      this.setarr();
+    console.log("this.setarr***",this.setarr())
   },
-  mounted() {}
+
 };
 </script>
 <style scoped lang="scss">
@@ -131,6 +140,7 @@ export default {
   flex-direction: column;
   background: #f4f4f4;
   font-size: 0.33rem;
+  overflow: auto;
 }
 header {
   background: #79cd92;
@@ -235,12 +245,67 @@ header {
     }
   }
   .foot {
-    height: 0.3rem;
+    height:.5rem;
     padding: 0 0.2rem;
     font-size: 0.31rem;
     background: #eee;
     color: #666;
-    line-height: 0.3rem;
+    line-height: .5rem;
+  }
+ 
+
+  .arrs{
+    margin-top:.2rem;
+    width: 100%;
+    display: flex;
+    background:#fff;
+    // border-bottom:1px solid #ccc;
+    padding:.3rem;
+    flex-direction: column;
+    .dealer{
+      width: 100%;
+      height: 1.5rem;
+      border-bottom:1px solid #ccc;
+      display: flex;
+      position: relative;
+      .left{
+        width: 5%;
+        height: 100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .right{
+        padding:.1rem;
+        width: 95%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        // justify-content: flex-start;
+        line-height:.45rem;
+        font-size: .25rem;
+        & p:first-child{
+          font-size: .3rem;
+        }
+        & p:last-child{
+          color:#999;
+          font-size: .28rem;
+        }
+      }
+      .line{
+        position: absolute;
+        right: .0;
+        bottom:.6rem;
+        font-size: .2rem;
+        color:#ccc;
+      }
+      .money{
+        position: absolute;
+        right: 0;
+        top:.2rem;
+        font-size: .2rem;
+      }
+    }
   }
 }
 // 城市列表动画

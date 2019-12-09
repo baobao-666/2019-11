@@ -5,6 +5,7 @@ let state={
     current: '全部',    // 当前选择年份 
     year: ['全部'],     // 所有的年份
     currentList: [],    // 当前年份的车款数据 
+    arrs:[]
 }
 
 // 给车款排序
@@ -79,8 +80,10 @@ let mutations={
     },
     backRoll(state,payload){
         state.current=payload;
+    },
+    setarr(state,payload){
+        state.arrs=payload
     }
-    
   
 }
 
@@ -90,12 +93,13 @@ let actions={
        if(res.code===1){
         commit("updateDesclist",res)
        }
+       console.log(res)
     },
-    async getCityId({commit},id){
-        let res = await this.getCityId(id)
-        console.log(res)
-    }
-
+   async getCityId({commit},payload){
+       let res = await getCityId(payload);
+       commit('setarr',res.data.list)
+       console.log("res.data=====>",res.data.list)
+   }
 }
 
 export default{

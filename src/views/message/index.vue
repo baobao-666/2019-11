@@ -45,6 +45,7 @@
       <p>询问低价</p>
       <p>本地经销商为你报价</p>
     </div>
+    <!-- {{desclist}} -->
   </div>
 </template>
 <script>
@@ -70,7 +71,11 @@ export default {
       this.getCartMessSort(this.$route.query.id);
     },
     jump(id) {
-      console.log("id...", id);
+      console.log("id...", this.currentList[0].list[0]);
+      // 存车系 ID
+      let idi =this.currentList;
+      let idele =idi && idi[0].list[0].car_id;
+      localStorage.setItem('SerialID',idele);
       this.$router.push({ path: "/carthome", query: { id } });
     },
     jumpCartMess(){
