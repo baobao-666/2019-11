@@ -28,22 +28,14 @@
         <div class="item" v-for="(item, index) in currentList" :key="index">
           <p>{{item.key}}</p>
           <ul>
-<<<<<<< HEAD
-            <li class="line" v-for="(ele,index) in item.list" :key="index">
-=======
             <li class="line" v-for="(ele,index) in item.list" :key="index" >
->>>>>>> b13ed1b6dfdc41762e186822b4d076373924f0ce
               <p class="one">{{ele.market_attribute.year}}款{{ ele.car_name }}</p>
               <p class="two">{{ ele.trans_type }}</p>
               <p class="three">
                 <span>指导价{{ ele.market_attribute.official_refer_price }}</span>
                 <span>{{ ele.market_attribute.dealer_price }}起</span>
               </p>
-<<<<<<< HEAD
-              <button @click="jump(ele.car_id)">询问底价</button>
-=======
               <button @click="jump()">询问底价</button>
->>>>>>> b13ed1b6dfdc41762e186822b4d076373924f0ce
             </li>
           </ul>
         </div>
@@ -67,13 +59,8 @@ export default {
   },
   methods: {
     ...mapActions({
-<<<<<<< HEAD
-      getCartMessSort: "CartMess/getCartMessSort"
-  
-=======
       getCartMessSort: "CartMess/getCartMessSort",
       // getCityId:"CartMess/getCityId"
->>>>>>> b13ed1b6dfdc41762e186822b4d076373924f0ce
     }),
     ...mapMutations({backRoll:"CartMess/backRoll"}),
     //tab切换
