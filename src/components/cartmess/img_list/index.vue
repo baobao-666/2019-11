@@ -6,7 +6,7 @@
             <div class="title">
                 <div class="titles">
                    <p>{{items.Name}}</p>
-                   <p>{{items.Count}}</p>
+                   <p>{{items.Count}}></p>
                 </div>
             </div>
         </div>
@@ -49,12 +49,13 @@ export default {
        .title{
            width: 100%;
            height: 100%;
-           background: rgba($color: #fff, $alpha: .5);
+           background: rgba($color: #fff, $alpha: .3);
            display: flex;
            justify-content: center;
            align-items: center;
            p{
             margin-bottom: .2rem;
+            color:#fff;
             }
        }
 }

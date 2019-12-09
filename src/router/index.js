@@ -27,19 +27,7 @@ const routes = [
    path:'/cartmess',
    name:'cartmess',
    component:()=>import('../views/cartmess/'),
-   children:[
-     {
-       path:'/cartmess/cartcolor',
-       name:'cartcolor',
-       component:()=>import('../views/cartmess/cartColo/'),
-       children:[]
-     },{
-      path:'/cartmess/cartstyle',
-      name:'cartstyle',
-      component:()=>import('../views/cartmess/cartStyle/'),
-      children:[]
-     }
-   ]
+   children:[]
  },
 
  {

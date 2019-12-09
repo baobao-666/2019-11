@@ -1,10 +1,10 @@
 <template>
   <div class="mess-page" v-if="(Object.keys(desclist).length)" >
     <header>
-      <router-link class="img" tag="div" to="/cartmess">
+      <div class="img"  @click="jumpCartMess" >
         <img v-lazy="desclist.Picture" alt />
         <span>{{desclist.pic_group_count}}张图片</span>
-      </router-link>
+      </div>
 
       <div class="text">
         <div class="left">
@@ -70,8 +70,11 @@ export default {
       this.getCartMessSort(this.$route.query.id);
     },
     jump(id) {
-      console.log(this.CityId)
-      // this.$router.push({ path: "/carthome", query: { id,CityId:this.CityId } });
+      console.log("id...", id);
+      this.$router.push({ path: "/carthome", query: { id } });
+    },
+    jumpCartMess(){
+       this.$router.push({path:'/cartmess',query:{id:this.$route.query.id}})
     }
   },
   computed: {
