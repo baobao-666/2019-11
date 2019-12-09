@@ -1,7 +1,7 @@
-import {getcityList,getcityOneList} from '@/services/index'
+import {getcityList,getcityOneList,getautomatic} from '@/services/index'
 
 const state={
-    automatic:"北京",
+    automatic:"",
     cityList:[],
     cityOneList:[],
     cityFlag:false,
@@ -34,6 +34,12 @@ const actions={
  async getcityOneList({commit},id){
     let res= await getcityOneList(id)
     commit("setOne",res.data)
+},
+ async getautomatic({commit}){
+    let res= await  getautomatic()
+    if(res.code===1){
+     commit("setAutomatic",res.data.CityName)
+    }
 }
 }
 export default {

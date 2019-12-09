@@ -30,7 +30,8 @@
           </li>
           <li>
             <span>城市</span>
-            <button @click="alerts">{{automatic}}</button>
+            <button @click="alerts">{{automatic}}</button> 
+            <!-- 默认城市 -->
             <transition name="cityList">
               <CityCode v-if="cityblock"></CityCode>
             </transition>
@@ -55,7 +56,7 @@
 <script>
 import CityCode from "@/components/city_list/";
 import axios from "axios";
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapMutations,mapActions } from "vuex";
 
 export default {
   props: {},
@@ -77,6 +78,9 @@ export default {
     })
   },
   methods: {
+    ...mapActions({
+         getautomatic:"mess/getautomatic"
+    }),
     ...mapMutations({
       setcityblock: "mess/setcityblock"
     }),
@@ -109,8 +113,12 @@ export default {
           console.log(this.list);
         }
       });
+<<<<<<< HEAD
     // console.log(this.$route.query.id)
     this.getCityId()
+=======
+      this.getautomatic()
+>>>>>>> master
   },
   mounted() {}
 };
