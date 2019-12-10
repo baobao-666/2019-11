@@ -75,7 +75,6 @@ const actions={
     },
     async getStyleList({commit},id){
         let res = await getStyleList(id)
-        console.log(res);
         if(res.code===1){
             commit("setColorList",res.data)
           }

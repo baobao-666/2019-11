@@ -15,6 +15,10 @@
        <transition name="ColorStyleCode" >
          <CartStyleCode v-if="StyleFlag"  ></CartStyleCode>
        </transition>
+       <!-- 图片列表scroll组件 -->
+       <clickImgList  v-if="ImgScrollflag" ></clickImgList>
+
+
   </div>
 </template>
 <script>
@@ -26,12 +30,16 @@ import ColorCode from '@/components/cartmess/color_list/'
 // 引入样式组件
 import CartStyleCode from '@/components/cartmess/style_list/'
 
+// 引入图片列表组件
+import  clickImgList from '@/components/cartIdimg_list/'
+
 import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
   components: {
      ImgCode,
      ColorCode,
-     CartStyleCode
+     CartStyleCode,
+     clickImgList
   },
   data() {
     return {
@@ -44,7 +52,8 @@ export default {
        ColorFlag:state=>state.ColorStyle.ColorFlag,
        StyleFlag:state=>state.ColorStyle.StyleFlag,
        ColorInner:state=>state.ColorStyle.ColorInner,
-       styleInner:state=>state.ColorStyle.styleInner
+       styleInner:state=>state.ColorStyle.styleInner,
+       ImgScrollflag:state=>state.GetImgScroll.ImgScrollflag
     })
   },
   methods: {

@@ -39,14 +39,18 @@ const  mutations={
 
 const actions={
     async getMasterAllList({commit},payload){
-        let res=await getMasterAllList()     
-        await commit("setAllList",res.data)
-        await commit("setArr",res.data)
-        await commit("setList",res.data)
+        let res=await getMasterAllList()
+        if(res.code===1){
+          await commit("setAllList",res.data)
+          await commit("setArr",res.data)
+          await commit("setList",res.data)
+        }     
     },
     async getdrawerList({commit},payload){
        let res =await getdrawerList(payload)
-       await commit("setdrawerList",res.data)
+       if(res.code===1){
+         await commit("setdrawerList",res.data)
+       }
     }
 }
 export default {

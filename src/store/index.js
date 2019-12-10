@@ -17,13 +17,17 @@ import CartMess from './modules/Cartmess'
 import ColorStyle from './modules/colorStyle'
 
 
+// 处理滚动页面数据
+import GetImgScroll   from './modules/GetImgScroll'
+
 export default new Vuex.Store({
  
   modules: {
     home,
     mess,
     CartMess,
-    ColorStyle
+	ColorStyle,
+	GetImgScroll
   },
   plugins:[creareLogger()]
 });

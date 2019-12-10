@@ -28,12 +28,15 @@ const mutations={
 const actions={
   async  getcityList({commit},id){
         let res= await getcityList()
-        console.log(res);
-        commit("setAll",res.data)
+         if(res.code===1){
+             commit("setAll",res.data)
+         }
 },
  async getcityOneList({commit},id){
     let res= await getcityOneList(id)
-    commit("setOne",res.data)
+    if(res.code===1){
+        commit("setOne",res.data)
+    }
 },
  async getautomatic({commit}){
     let res= await  getautomatic()

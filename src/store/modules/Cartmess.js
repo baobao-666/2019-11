@@ -60,7 +60,6 @@ let mutations={
             state.year = [...new Set(state.year.concat([...new Set(year)]))];;
             // 2.拿到当前选择年份的数据
             let currentList = [];
-            console.log(state.current,"======")
             if (state.current == '全部'){
                currentList = payload.data.list;
             }else{
@@ -97,8 +96,9 @@ let actions={
     },
    async getCityId({commit},payload){
        let res = await getCityId(payload);
-       commit('setarr',res.data.list)
-       console.log("res.data=====>",res.data.list)
+       if(res.code===1){
+           commit('setarr',res.data.list)
+       }
    }
 }
 
