@@ -105,7 +105,7 @@ export default {
 }
 .mess-page header {
   width: 100%;
-  flex: 1;
+  flex: 1; 
   overflow-y: scroll;
   background: #f2f2f2;
   .img {

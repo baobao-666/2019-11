@@ -1,11 +1,17 @@
 <template>
     <div class="wrap_scroll" >
-
-    <!-- <template v-slot:default="itemImg" >
+     <SlotImgCode  
+      ref="scroll"
+      :data="value"
+      :pullDomnRefresh="pullDownRefreshObj"
+      @pullingDown="onPullingDown"
+      @pullingUp="onPullingUp"
+     >
        <div class="container_scroll">
            <li v-for="(item,index) in ImgScrollList.List" :key="index" :style="{backgroundImage:'url('+item.Url.replace('{0}',item.LowSize)+')'}"></li>
        </div>
-    </template> -->
+     </SlotImgCode>
+
     </div>
 </template>
 
@@ -13,16 +19,22 @@
 
 // 加载better-scroll 
 import BScroll from 'better-scroll'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
+import SlotImgCode from './slotImg'
 
 export default {
-    methods:{
-     
+    components:{
+       SlotImgCode
     },
     computed:{
         ...mapState({
             ImgScrollList:state=>state.GetImgScroll.ImgScrollList
+        })
+    },
+    methods:{
+        ...mapActions({
+            grtImageTypeList:"GetImgScroll/grtImageTypeList"
         })
     }
 }
