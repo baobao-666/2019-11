@@ -8,7 +8,7 @@
     </header>
     <div class="count">
       <div class="hover">
-        <div class="img">
+        <div class="img" @click="iuy">
           <img :src="this.titImg" alt />
         </div>
         <div class="text">
@@ -98,7 +98,8 @@ export default {
     }),
     ...mapMutations({
         setcityblock: "mess/setcityblock",
-        setarr:"CartMess/setarr"
+        setarr:"CartMess/setarr",
+        setWareHouseStyle:"ColorStyle/setWareHouseStyle",
     }),
     alerts() {
         this.setcityblock(true);
@@ -110,6 +111,10 @@ export default {
       ) {
         alert("姓名或者手机号输入有误");
       }
+    },
+    iuy(){
+      this.setWareHouseStyle(true)
+      this.$router.push('/cartmess') 
     }
   },
   created() {
@@ -127,6 +132,7 @@ export default {
       this.getautomatic();
       this.getCityId(SerialID);
       this.setarr();
+      
     console.log("this.setarr***",this.setarr())
   },
 
