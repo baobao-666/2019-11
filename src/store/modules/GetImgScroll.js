@@ -30,7 +30,7 @@ let mutations={
     setColorId(state,payload){
        state.colorID=payload
     },
-    // 修改点击分类图标
+    // 修改点击分类图标`    ·
     setImageId(state,payload){
        state.ImageID=payload
     },
