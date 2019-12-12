@@ -25,6 +25,10 @@ Vue.use(ElementUI)
 import axios from 'axios';
 Vue.prototype.$http=axios;
 
+// 引入自定义指令
+import "@/directions/strixky"
+
+
 
 
 Vue.config.productionTip = false

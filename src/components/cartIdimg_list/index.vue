@@ -3,10 +3,10 @@
      <SlotImgCode  
       ref="scroll"
       :data="ImgScrollList.List"
-       :pullDownRefresh="pullDownRefreshObj"
-       :pullUpLoad="pullUpLoadObj"
-       @pullingDown="onPullingDown"
-       @pullingUp="onPullingUp"
+      :pullDownRefresh="pullDownRefreshObj"
+      :pullUpLoad="pullUpLoadObj"
+      @pullingDown="onPullingDown"
+      @pullingUp="onPullingUp"
      >
        <div class="container_scroll">
            <li v-for="(item,index) in ImgScrollList.List" :key="index" :style="{backgroundImage:'url('+item.Url.replace('{0}',item.LowSize)+')'}"></li>
