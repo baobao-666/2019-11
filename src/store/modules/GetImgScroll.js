@@ -59,7 +59,6 @@ let actions={
 //   请求全部id
    async getIdImgList({commit},objId){
      let res=await getIdImgList(objId)
-     console.log(res);
      if(res.code===1){
          commit("setImgScrollList",res.data)
      }

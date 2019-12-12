@@ -1,6 +1,6 @@
 <template>
    <div class="img-item">
-       图片插槽
+     <slot></slot>
    </div>
 </template>
 
