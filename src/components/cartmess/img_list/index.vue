@@ -32,7 +32,8 @@ export default {
     },
     methods:{
         ...mapMutations({
-            setImgFlag:"GetImgScroll/setImgFlag"
+            setImgFlag:"GetImgScroll/setImgFlag",
+            setImageId:"GetImgScroll/setImageId"
         }),
         ...mapActions({
             getIdImgList:"GetImgScroll/getIdImgList"
@@ -42,6 +43,7 @@ export default {
             console.log(id);
             this.getIdImgList({SerialID:this.$route.query.id,ImageID:id})
             this.setImgFlag(true)
+            this.setImageId(id)
         }
     }
 }

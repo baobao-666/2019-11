@@ -19,6 +19,9 @@
        <clickImgList  v-if="ImgScrollflag" ></clickImgList>
 
 
+       <!-- 轮播预加载组件 -->
+       <ImagePreview v-if="showImageSwiper" :showImageSwiper.sync="showImageSwiper"></ImagePreview>
+
   </div>
 </template>
 <script>
@@ -31,7 +34,11 @@ import ColorCode from '@/components/cartmess/color_list/'
 import CartStyleCode from '@/components/cartmess/style_list/'
 
 // 引入图片列表组件
-import  clickImgList from '@/components/cartIdimg_list/'
+import  clickImgList from '@/components/cartIdimg_list/ImageTypeList'
+
+
+// 轮播图片
+import ImagePreview from '@/components/cartIdimg_list/ImagePreview'
 
 import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
@@ -39,11 +46,12 @@ export default {
      ImgCode,
      ColorCode,
      CartStyleCode,
-     clickImgList
+     clickImgList,
+     ImagePreview
   },
   data() {
     return {
-       
+       showImageSwiper: false
     };
   },
   computed: {
@@ -63,7 +71,9 @@ export default {
     }),
     ...mapMutations({
       setWareHouseStyle:"ColorStyle/setWareHouseStyle",
-      setWareHouseColor:"ColorStyle/setWareHouseColor"
+      setWareHouseColor:"ColorStyle/setWareHouseColor",
+      setSerialID:"GetImgScroll/setSerialID"
+
     }),
     setColorFlag(){
        this.setWareHouseColor(true)
@@ -75,6 +85,7 @@ export default {
   created() {
     this.getAllColor(this.$route.query.id);
     this.getCartMessSort(this.$route.query.id);
+    this.setSerialID(this.$route.query.id)
   }
 };
 </script>

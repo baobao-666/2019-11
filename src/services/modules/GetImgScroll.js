@@ -5,3 +5,8 @@ import request from '@/utils/request'
 export let  getIdImgList=(obj)=>{
     return request('/v2-car-getCategoryImageList.html',{params:{SerialID:obj.SerialID,ImageID:obj.ImageID}})
 }
+
+// 获取图片分类列表
+export let getImageTypeList = (params) => {
+    return request("/v2-car-getCategoryImageList.html", { params })
+}
