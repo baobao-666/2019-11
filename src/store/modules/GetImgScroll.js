@@ -69,12 +69,13 @@ let mutations={
             state.imageTypeList = state.imageTypeList.concat(payload.List);
         }
     }
+
 }
 
 let actions={
+//   请求全部id
    async getIdImgList({commit},objId){
      let res=await getIdImgList(objId)
-     console.log(res);
      if(res.code===1){
          commit("setImgScrollList",res.data)
      }
