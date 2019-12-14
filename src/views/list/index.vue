@@ -25,8 +25,6 @@ import NavList from "@/components/nav_list/";
 import DrawerCode from "@/components/drawer_list/";
 import { mapState, mapActions } from "vuex";
 
-// 页面loding效果
-import { Loading } from "element-ui";
 
 export default {
   props: {},

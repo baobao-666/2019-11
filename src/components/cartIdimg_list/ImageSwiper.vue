@@ -21,18 +21,18 @@ import {mapState, mapMutations, mapActions} from 'vuex'
 export default {
     computed: {
         ...mapState({
-            imageList: state=>state.pic.imageList,
-            current: state=>state.pic.current,
-            count: state=>state.pic.count,
-            page: state=>state.pic.page
+            imageList: state=>state.GetImgScroll.imageList,
+            current: state=>state.GetImgScroll.current,
+            count: state=>state.GetImgScroll.count,
+            page: state=>state.GetImgScroll.page
         })
     },
     methods: {
         ...mapMutations({
-            setCurrent: 'pic/setCurrent'
+            setCurrent: 'GetImgScroll/setCurrent'
         }),
         ...mapActions({
-            getImageTypeList: 'pic/getImageTypeList'
+            getImageTypeList: 'GetImgScroll/getImageTypeList'
         }),
         change(index){
             // 提前两张加载下一页图片

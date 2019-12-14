@@ -45,6 +45,8 @@ export default {
         }),
         showSwiper(index) {
             // 显示轮播
+            console.log(index);
+            
             this.$emit("update:showImageSwiper", true);
             // 修改current
             this.setCurrent(index);
