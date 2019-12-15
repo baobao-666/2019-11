@@ -13,7 +13,8 @@ let state={
    Count: 0, //总数据
    Page: 1, //分页 当前页 给默认值
    PageSize: 30, //每页数量 给默认值
-   Current: ""
+   Current: "",
+   showImageSwiper:false
 }
 
 let mutations={
@@ -68,6 +69,9 @@ let mutations={
         } else {
             state.imageTypeList = state.imageTypeList.concat(payload.List);
         }
+    },
+    setShowImageSwiper(state,payload){
+       state.showImageSwipera=payload
     }
 
 }
@@ -94,11 +98,7 @@ let actions={
         Page: state.Page,
         PageSize: state.PageSize
     }
-    console.log(params);
-
     let res = await getImageTypeList(params);
-    console.log(res.data);
-
     let { Count, List } = res.data;
     commit('setImageTypeList', { Count, List });
 }

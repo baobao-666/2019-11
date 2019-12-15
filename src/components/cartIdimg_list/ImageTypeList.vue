@@ -41,12 +41,12 @@ export default {
             getImageTypeList: "GetImgScroll/getImageTypeList"
         }),
         ...mapMutations({
-            setCurrent: "GetImgScroll/setCurrent"
+            setCurrent: "GetImgScroll/setCurrent",
+            setShowImageSwiper:"GetImgScroll/setShowImageSwiper"
         }),
         showSwiper(index) {
             // 显示轮播
-            console.log(index);
-            
+            this.setShowImageSwiper(true)
             this.$emit("update:showImageSwiper", true);
             // 修改current
             this.setCurrent(index);

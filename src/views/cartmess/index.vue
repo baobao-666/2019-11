@@ -16,7 +16,7 @@
          <CartStyleCode v-if="StyleFlag"  ></CartStyleCode>
        </transition>
        <!-- 图片列表scroll组件 -->
-       <clickImgList  v-if="ImgScrollflag" ></clickImgList>
+       <clickImgList  v-if="ImgScrollflag" :showImageSwiper.sync="showImageSwiper" ></clickImgList>
 
 
        <!-- 轮播预加载组件 -->
@@ -61,7 +61,8 @@ export default {
        StyleFlag:state=>state.ColorStyle.StyleFlag,
        ColorInner:state=>state.ColorStyle.ColorInner,
        styleInner:state=>state.ColorStyle.styleInner,
-       ImgScrollflag:state=>state.GetImgScroll.ImgScrollflag
+       ImgScrollflag:state=>state.GetImgScroll.ImgScrollflag,
+       setShowImageSwiper:state=>state.GetImgScroll.setShowImageSwiper
     })
   },
   methods: {

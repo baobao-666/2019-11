@@ -16,6 +16,11 @@ Vue.use(VueLazyload, {
   loading: 'http://www.kedo.gov.cn/upload/resources/image/2015/11/03/144653551630115504.gif'
 })
 
+
+import vant from "vant"
+import 'vant/lib/index.css'
+Vue.use(vant)
+
 // 引入自定义指令
 // import "@/directions/strixky"
 
