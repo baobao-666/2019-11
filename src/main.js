@@ -16,10 +16,6 @@ Vue.use(VueLazyload, {
   loading: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575213695818&di=e9b0c97cbe032fe0ef29f8cd95c4c0c3&imgtype=0&src=http%3A%2F%2Fimg.yxad.cn%2Fimages%2F20190303%2Fc03014e09d1349c9bdd687f94f96fbe1.gif',
 })
 
-// elementui 库
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI)
 
 // 挂载全局axios
 import axios from 'axios';
