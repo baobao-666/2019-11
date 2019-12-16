@@ -1,24 +1,25 @@
-import {getCartMessSort,getCityId} from '@/services/index'
+import { getCartMessSort, getCityId } from '@/services/index'
 
-let state={
+let state = {
     desclist: {},   // 元数据
     current: '全部',    // 当前选择年份 
     year: ['全部'],     // 所有的年份
     currentList: [],    // 当前年份的车款数据 
-    arrs:[]
+    arrs: [],
+
 }
 
 // 给车款排序
-function sortCarList(list){
+function sortCarList(list) {
     // 排序规则 排量升序 && 功率升序 && 自然吸气>涡轮增压
-    list.sort((a, b)=>{
-        if (a.exhaust_str == b.exhaust_str){
-            if (a.max_power_str == b.max_power_str){
+    list.sort((a, b) => {
+        if (a.exhaust_str == b.exhaust_str) {
+            if (a.max_power_str == b.max_power_str) {
                 return b.inhale_type > a.inhale_type;
-            }else{
+            } else {
                 return a.max_power - b.max_power;
             }
-        }else{
+        } else {
             return a.exhaust - b.exhaust;
         }
     })
@@ -26,20 +27,20 @@ function sortCarList(list){
 }
 
 // 格式化数据
-function formatCarList(list){
+function formatCarList(list) {
     // 拼接每款车的key 排量/功率 吸气方式
- list = list.map(item=>{
+    list = list.map(item => {
         item.key = `${item.exhaust_str}/${item.max_power_str} ${item.inhale_type}`;
         return item;
     })
     let newList = [];
-    
+
     // 遍历，根据key把数据聚合一下
-    list.forEach(item=>{
-        let index = newList.findIndex(value=>value.key == item.key);
-        if (index !== -1){
+    list.forEach(item => {
+        let index = newList.findIndex(value => value.key == item.key);
+        if (index !== -1) {
             newList[index].list.push(item);
-        }else{
+        } else {
             newList.push({
                 key: item.key,
                 list: [item]
@@ -50,22 +51,21 @@ function formatCarList(list){
 }
 
 
-let mutations={
-     updateDesclist(state,payload){
-        if(payload.code==1){
+let mutations = {
+    updateDesclist(state, payload) {
+        if (payload.code == 1) {
             state.desclist = payload.data
             /** 处理数据 */
             // 1.拿到年份
-            let year = payload.data.list.map(item=>item.market_attribute.year);
+            let year = payload.data.list.map(item => item.market_attribute.year);
             state.year = [...new Set(state.year.concat([...new Set(year)]))];;
             // 2.拿到当前选择年份的数据
             let currentList = [];
-            if (state.current == '全部'){
-               currentList = payload.data.list;
-            }else{
-              currentList = payload.data.list.filter(item=>item.market_attribute.year == state.current);
+            if (state.current == '全部') {
+                currentList = payload.data.list;
+            } else {
+                currentList = payload.data.list.filter(item => item.market_attribute.year == state.current);
             }
-
             // 3.给当前年份数据排序
             currentList = sortCarList(currentList);
 
@@ -73,37 +73,44 @@ let mutations={
             currentList = formatCarList(currentList);
             state.currentList = currentList;
             console.log('currentList...', currentList);
-        }else{
+        } else {
             alert(payload.msg)
         }
     },
-    backRoll(state,payload){
-        state.current=payload;
+    backRoll(state, payload) {
+        state.current = payload;
     },
-    setarr(state,payload){
-        state.arrs=payload
+    setarr(state, payload) {
+        state.arrs = payload
     }
   
 }
 
-let actions={
-   async getCartMessSort({commit},id){
-       let res = await getCartMessSort(id)
-       if(res.code===1){
-        commit("updateDesclist",res)
-       }
-       console.log(res)
+let actions = {
+    async getCartMessSort({ commit }, id) {
+        let res = await getCartMessSort(id)
+        if (res.code === 1) {
+            commit("updateDesclist", res)
+        }
+        console.log(res)
     },
-   async getCityId({commit},payload){
-       let res = await getCityId(payload);
-       if(res.code===1){
-           commit('setarr',res.data.list)
-       }
-   }
+    async getCityId({ commit }, payload) {
+        let res = await getCityId(payload);
+        if (res.code === 1) {
+            commit('setarr', res.data.list)
+        }
+    },
+    // async getFrom({ commit }, id) {
+    //     let res = await getFrom(id);
+    //     console.log("res*****",res)
+    //     if (res.code === 1) {
+    //         commit('fromList', res.data.list)
+    //     }
+    // }
 }
 
-export default{
-    namespaced:true,
+export default {
+    namespaced: true,
     state,
     mutations,
     actions

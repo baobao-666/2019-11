@@ -47,15 +47,15 @@ export default {
     height: 100%;
     background: #fff;
     margin-left: 30%;
-    padding-left: .1rem;
+    padding-left: 10px;
     overflow-y: scroll;
 }
 .deawer_item{
     width: 100%;
-    line-height: .8rem;
-    border-bottom: .01rem solid #ccc;
-    padding-left: .4rem;
-    font-size: .28rem;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+    padding-left: 20px;
+    font-size: 14px;
     &:last-child{
         border: none;
     }

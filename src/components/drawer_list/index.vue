@@ -2,8 +2,13 @@
   <div class="drawer_wrapp" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
     <div class="drawer_list" v-for="(item,index) in deamerList" :key="index">
       <div class="drawer_title">{{item.GroupName}}</div>
-      <div v-for="(ele,ind) in item.GroupList" :key="ind" class="drawer_ele" @click="getList(ele.SerialID)" >
-        <img v-lazy="ele.Picture"  />
+      <div
+        v-for="(ele,ind) in item.GroupList"
+        :key="ind"
+        class="drawer_ele"
+        @click="getList(ele.SerialID)"
+      >
+        <img v-lazy="ele.Picture" />
         <div class="title">
           <p>{{ele.AliasName}}</p>
           <span>{{ele.DealerPrice}}</span>
@@ -14,7 +19,6 @@
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
-
 
 export default {
   computed: {
@@ -27,19 +31,14 @@ export default {
       setFlag: "home/setFlag"
     }),
     getList(id) {
-      console.log(id);
       this.$router.push({ path: "/message", query: { id } });
       this.setFlag(false);
     },
     touchStart(e) {
-     console.log("开始移动");
     },
-    touchMove(e) {
-
-          },
+    touchMove(e) {},
     touchEnd(e) {
-      console.log("移动结束");
-      this.setFlag(false)
+      this.setFlag(false);
     }
   }
 };
@@ -60,35 +59,39 @@ export default {
 }
 .drawer_title {
   width: 100%;
-  line-height: .7rem;
+  line-height: 32px;
   background: #f0f0f0;
-  padding-left: .4rem;
+  padding-left: 15px;
+  font-size: 14px;
+  color:#999;
 }
 .drawer_ele {
   width: 100%;
-  height: 1.4rem;
+  height: 70px;
   display: flex;
-  padding: .10rem .40rem;
-  border-bottom: .1px solid #ccc;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 0.1px solid #ccc;
   img {
-    width: 1.4rem;
-    height: 1rem;
+    margin: 0 5px 0 10px;
+    width:90px;
+    height: 50px;
   }
   .title {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+      margin-left:5px;
     p {
-      line-height: .6rem;
-      margin-left: .1rem;
+      line-height:30px;
       color: #666;
-      font-size: .30rem;
+      font-size: 16px;
+      font-weight: 900;
     }
-    span {
-      display: block;
-      line-height: .6rem;
-      width: 100%;
-      text-align: center;
-      color: red;
-      font-size: .26rem;
+    span{
+      font-size: 14px;
+      color:red;
     }
   }
 }

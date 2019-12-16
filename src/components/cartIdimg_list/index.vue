@@ -104,9 +104,9 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   li {
-    width: 2.44rem;
-    height: 2.44rem;
-    margin-bottom: 0.25em;
+    width: 123px;
+    height: 123px;
+    margin-bottom: 13px;
     background-size: cover;
     background-position: center;
   }

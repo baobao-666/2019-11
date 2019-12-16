@@ -34,9 +34,7 @@ import ColorCode from '@/components/cartmess/color_list/'
 import CartStyleCode from '@/components/cartmess/style_list/'
 
 // 引入图片列表组件
-import  clickImgList from '@/components/cartIdimg_list/ImageTypeList'
-
-
+import  clickImgList from '@/components/cartIdimg_list/ImageTypeList'  
 // 轮播图片
 import ImagePreview from '@/components/cartIdimg_list/ImagePreview'
 
@@ -100,14 +98,14 @@ export default {
 }
 .types{
     width: 100%;
-    height: 1rem;
+    height: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     div{
       b{
         font-weight: 600;
-        margin-left: .1rem;
+        margin-left: 10px;
       }
     }
 }

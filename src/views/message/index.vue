@@ -1,8 +1,8 @@
 <template>
-  <div class="mess-page" v-if="(Object.keys(desclist).length)" >
+  <div class="mess-page" v-if="(Object.keys(desclist).length)">
     <header>
-      <div class="img"  @click="jumpCartMess" >
-        <img v-lazy="desclist.Picture" alt />
+      <div class="img" @click="jumpCartMess">
+        <img v-lazy="desclist.CoverPhoto" alt />
         <span>{{desclist.pic_group_count}}张图片</span>
       </div>
 
@@ -28,9 +28,9 @@
         <div class="item" v-for="(item, index) in currentList" :key="index">
           <p>{{item.key}}</p>
           <ul>
-            <li class="line" v-for="(ele,index) in item.list" :key="index" >
+            <li class="line" v-for="(ele,index) in item.list" :key="index">
               <p class="one">{{ele.market_attribute.year}}款{{ ele.car_name }}</p>
-              <p class="two">{{ ele.trans_type }}</p>
+              <p class="two">{{ele.inhale_type}}-{{ ele.trans_type }}</p>
               <p class="three">
                 <span>指导价{{ ele.market_attribute.official_refer_price }}</span>
                 <span>{{ ele.market_attribute.dealer_price }}起</span>
@@ -60,26 +60,27 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCartMessSort: "CartMess/getCartMessSort",
-      // getCityId:"CartMess/getCityId"
+      getCartMessSort: "CartMess/getCartMessSort"
     }),
-    ...mapMutations({backRoll:"CartMess/backRoll"}),
+    ...mapMutations({ backRoll: "CartMess/backRoll" }),
     //tab切换
-    cut(index,item) {
+    cut(index, item) {
       this.curIndex = index;
-      this.backRoll(item)
+      this.backRoll(item);
       this.getCartMessSort(this.$route.query.id);
     },
     jump(id) {
-      console.log("id...", this.currentList[0].list[0]);
       // 存车系 ID
-      let idi =this.currentList;
-      let idele =idi && idi[0].list[0].car_id;
-      localStorage.setItem('SerialID',idele);
+      let idi = this.currentList;
+      let idele = idi && idi[0].list[0].car_id;
+      localStorage.setItem("SerialID", idele);
       this.$router.push({ path: "/carthome", query: { id } });
     },
-    jumpCartMess(){
-       this.$router.push({path:'/cartmess',query:{id:this.$route.query.id}})
+    jumpCartMess() {
+      this.$router.push({
+        path: "/cartmess",
+        query: { id: this.$route.query.id }
+      });
     }
   },
   computed: {
@@ -87,7 +88,7 @@ export default {
       desclist: state => state.CartMess.desclist,
       current: state => state.CartMess.current,
       year: state => state.CartMess.year,
-      currentList: state => state.CartMess.currentList,
+      currentList: state => state.CartMess.currentList
     })
   },
   created() {
@@ -105,66 +106,64 @@ export default {
 }
 .mess-page header {
   width: 100%;
-  flex: 1; 
+  flex: 1;
   overflow-y: scroll;
   background: #f2f2f2;
   .img {
-    width: 100%;
-    height: 4.5rem;
     position: relative;
-    background: #fff;
+    height: 170px;
+    overflow: hidden;
     img {
-      position: absolute;
+      width: 100%;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: block;
-      max-width: 100%;
-      max-height: 100%;
-      outline: none;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      position: absolute;
     }
     span {
       position: absolute;
-      bottom: 0.15rem;
-      right: 0.3rem;
+      bottom: 15px;
+      right: 10px;
       background: rgba(0, 0, 0, 0.5);
-      border-radius: 0.3rem;
+      border-radius: 5px;
       color: #fff;
-      padding: 0.1rem 0.2rem;
+      padding: 8px 10px;
+      font-size: 14px;
+      text-align: center;
     }
   }
   .text {
-    height: 1rem;
-    display: flex;
+    padding: 15px 8px 15px;
     background: #fff;
+    display: flex;
     .left {
       width: 50%;
-      height: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      line-height: 0.5rem;
-      padding-left: 0.2rem;
+      line-height: 20px;
+      padding-left: 10px;
       & > p:first-child {
         color: red;
-        font-size: 0.4rem;
+        font-size: 16px;
+        font-weight: 900;
       }
       & > p:last-child {
-        font-size: 0.3rem;
+        font-size: 14px;
         color: #ccc;
       }
     }
     .right {
       width: 50%;
-      height: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
       span {
-        padding: 0.2rem 1rem;
+        padding: 10px 45px;
         background: skyblue;
         color: #fff;
-        border-radius: 0.1rem;
+        border-radius: 6px;
+        font-size: 14px;
       }
     }
   }
@@ -173,104 +172,102 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
- .c-type {
+  .c-type {
     width: 100%;
     background: #fff;
-    margin: 0.2rem 0 0 0;
-    height: 1rem;
+    margin: 10px 0 0 0;
+    height: 45px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 0.4rem;
-    span{
-       margin-right:.2rem;
-       &.active {
-      color: skyblue;
-     }
+    font-size: 16px;
+    span {
+      margin-right: 10px;
+      &.active {
+        color: skyblue;
+      }
     }
     & span:first-child {
-      padding-left:0.35rem;
+      padding-left: 15px;
     }
   }
   .item {
     width: 100%;
     background: #fff;
     & > p {
-      height: 0.5rem;
-      padding: 0 0.2rem;
+      height: 25px;
+      padding: 0 15px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      color: #999;
+      color: #a59999;
       font-size: 0.3rem;
       background: #f4f4f4;
     }
     ul {
       width: 100%;
-      .line{
+      .line {
         height: 2.3rem;
         height: 100%;
-        border-bottom: .1rem solid #f4f4f4;
+        border-bottom: 0.1rem solid #f4f4f4;
       }
       .line > .one {
-        height: 0.8rem;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin: 0 0.2rem;
+        padding:11px 15px 11px;
+        font-size: 16px;
+        line-height: 18px;
+        color: #3d3d3d;
       }
       .line > .two {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        height: 0.4rem;
         color: #999;
-
-        padding: 0 0.2rem;
+        font-size: 14px;
+        padding: 0 15px;
       }
       .line > .three {
-        height: 0.5rem;
-        padding: 0 0.2rem;
+        height: 25px;
+        padding: 0 10px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        font-size: 0.3rem;
+        font-size:14px;
         color: #999;
         & > span:last-child {
           color: Red;
-          margin-left: 0.2rem;
+          margin-left:10px;
         }
-     }
-  
-      }
-      button {
-        height: 0.83rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        outline: none;
-        color: skyblue;
-        border: 0;
-        width: 100%;
-        font-size: 0.35rem;
-        background: #fff;
-        border-top: 1px solid #ccc;
       }
     }
+    button {
+      width: 100%;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      outline: none;
+      color: #49aae8;
+      border: 0;
+      font-size: 16px;
+      background: #fff;
+      border-top: 1px solid #ccc;
+    }
   }
+}
 
 .foot {
   display: flex;
   width: 100%;
-  height: 1.1rem;
+  height: 45px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: skyblue;
   color: #fff;
   & > p:first-child {
-    font-size: 0.4rem;
-    margin-bottom: 0.1rem;
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 900;
   }
 }
 .active {

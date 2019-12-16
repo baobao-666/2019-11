@@ -40,28 +40,33 @@ export default {
 }
 .list_title {
   width: 100%;
-  line-height: .60rem;
+  line-height: 30px;
   background: #f0f0f0;
-  padding-left: .40rem;
+  color:#999;
+  padding-left: 15px;
+  font-size: 16px;
 }
 .list_ele {
-  width: 90%;
-  height: 1.4rem;
+  width: 95%;
+  height: 55px;
   display: flex;
-  padding: .30rem .40rem;
-  border-bottom: .01rem solid #ccc;
-  margin: 0 5%;
+  padding:15px;
+  margin-left:2.5%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
   &:last-child {
     border: none;
   }
   img {
-    width: .8rem;
-    height: .8rem;
+    width: 40px;
+    height:40px;
   }
   span {
     flex: 1;
     line-height: .80rem;
-    margin-left: .40rem;
+    margin-left: 20px;
+    font-size: 16px;
   }
 }
 </style>

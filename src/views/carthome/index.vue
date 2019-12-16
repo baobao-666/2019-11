@@ -12,8 +12,9 @@
           <img :src="this.titImg" alt />
         </div>
         <div class="text">
-          <p>{{list&&list.BrandName}}-{{list&&list.AliasName}}</p>
+          <p>{{list&&list.AliasName}}</p>
           <p>{{list.list&&list.list[0].car_name}}</p>
+          <span>&gt;</span>
         </div>
       </div>
 
@@ -30,12 +31,11 @@
           </li>
           <li>
             <span>城市</span>
-            <button @click="alerts">{{automatic}}</button> 
+            <button @click="alerts">{{automatic}}</button>
             <!-- 默认城市 -->
             <transition name="cityList">
               <CityCode v-if="cityblock"></CityCode>
             </transition>
-            
           </li>
         </ul>
       </div>
@@ -50,26 +50,25 @@
 
       <!-- 下面经销商 -->
       <!-- {{arrs}} -->
-        <div class="arrs">
-          <div class="dealer" v-for="(item,index) in arrs" :key="index">
-            <div class="left">
-                  <input type="checkbox" >
-            </div>
-            <div class="right">
-                  <p>{{item.dealerShortName}}</p>
-                  <p>{{item.address}}</p>
-            </div>
-            <span class="money">{{item.promotePrice}}万</span>
-            <span class="line">售{{item.saleRange}}</span>
+      <div class="arrs">
+        <div class="dealer" v-for="(item,index) in arrs" :key="index" @click="addColor(item)">
+          <div class="left">
+            <li :class="{active:item.newsRemainingDays==1}"></li>
           </div>
+          <div class="right">
+            <p>{{item.dealerShortName}}</p>
+            <p>{{item.address}}</p>
+          </div>
+          <span class="money">{{item.promotePrice}}万</span>
+          <span class="line">售{{item.saleRange}}</span>
         </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import CityCode from "@/components/city_list/";
-import axios from "axios";
-import { mapState, mapMutations,mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   props: {},
@@ -88,21 +87,23 @@ export default {
     ...mapState({
       cityblock: state => state.mess.cityblock,
       automatic: state => state.mess.automatic,
-      arrs:state=>state.CartMess.arrs
+      arrs: state => state.CartMess.arrs,
+      fromList: state => state.CartMess.fromList
     })
   },
   methods: {
     ...mapActions({
-        getautomatic:"mess/getautomatic",
-        getCityId:'CartMess/getCityId'
+      getautomatic: "mess/getautomatic",
+      getCityId: "CartMess/getCityId",
+      getFrom: "CartMess/getFrom"
     }),
     ...mapMutations({
-        setcityblock: "mess/setcityblock",
-        setarr:"CartMess/setarr",
-        setWareHouseStyle:"ColorStyle/setWareHouseStyle",
+      setcityblock: "mess/setcityblock",
+      setarr: "CartMess/setarr",
+      setWareHouseStyle: "ColorStyle/setWareHouseStyle"
     }),
     alerts() {
-        this.setcityblock(true);
+      this.setcityblock(true);
     },
     inquiry() {
       if (
@@ -112,9 +113,12 @@ export default {
         alert("姓名或者手机号输入有误");
       }
     },
-    iuy(){
-      this.setWareHouseStyle(true)
-      this.$router.push('/cartmess') 
+    iuy() {
+      this.setWareHouseStyle(true);
+      this.$router.push("/cartmess");
+    },
+    addColor(item) {
+      item.newsRemainingDays = !item.newsRemainingDays;
     }
   },
   created() {
@@ -128,14 +132,11 @@ export default {
           this.list = res.data.data;
         }
       });
-      let SerialID = localStorage.getItem('SerialID');
-      this.getautomatic();
-      this.getCityId(SerialID);
-      this.setarr();
-      
-    console.log("this.setarr***",this.setarr())
-  },
-
+    let SerialID = localStorage.getItem("SerialID");
+    this.getautomatic();
+    this.getCityId(SerialID);
+    this.setarr();
+  }
 };
 </script>
 <style scoped lang="scss">
@@ -145,14 +146,14 @@ export default {
   display: flex;
   flex-direction: column;
   background: #f4f4f4;
-  font-size: 0.33rem;
   overflow: auto;
 }
 header {
   background: #79cd92;
-  height: 0.6rem;
+  height: 30px;
   text-align: center;
-  line-height: 0.6rem;
+  line-height: 30px;
+  font-size: 15px;
   p {
     color: #fff;
   }
@@ -160,79 +161,82 @@ header {
 .count {
   flex: 1;
   .hover {
+    background: #fff;
+    padding: 16px 8px 13px;
     width: 100%;
     height: 100px;
-    padding: 10px;
-    background: #fff;
+    box-sizing: border-box;
     display: flex;
-    .img {
-      width: 40%;
-      position: relative;
-      overflow: hidden;
-      img {
-        position: absolute;
-        max-width: 100%;
-        max-height: 100%;
-        outline: none;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+    img {
+      width: 127px;
+      height: 77px;
+      border: 1px solid #eee;
+      border-radius: 5px;
     }
     .text {
-      width: 60%;
-      height: 100%;
-      display: flex;
-      line-height: 0.43rem;
-      flex-direction: column;
-      justify-content: flex-start;
-      & p:last-child {
-        font-size: 0.3rem;
+      height: 77px;
+      flex: 1;
+      position: relative;
+      margin-left:10px;
+      font-size: 16px;
+      line-height: 32px;
+      span {
+        position: absolute;
+        right:15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size:20px;
+        color: #ccc;
+        font-weight: 900;
       }
     }
   }
   .info {
     p {
-      height: 0.5rem;
+      height:25px;
       background: #eee;
-      font-size: 14px;
-      line-height: 0.5rem;
+      font-size:12px;
+      line-height:25px;
       color: #666;
-      padding-left: 0.2rem;
+      padding-left: 10px;
     }
     ul {
-      padding: 0 0.2rem;
+      padding: 0 13px;
       background: #fff;
       li {
-        height: 0.9rem;
-        line-height: 0.9rem;
+        height: 50px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #ccc;
         span {
-          font-size: 0.3rem;
+          font-size: 16px;
+          margin-right: 55px;
         }
         input {
           outline: none;
           border: 0;
+          flex: 1;
           text-align: right;
         }
+        input::-webkit-input-placeholder {
+          font-size: 14px;
+        }
       }
-      & li:last-child{
-        button{
+      & > li:last-child {
+        button {
           max-width: 100%;
           max-height: 100%;
           outline: none;
           border: 0;
-          background:#fff;
-          color:#999;
+          background: #fff;
+          color: #999;
         }
       }
     }
   }
   .quotation {
-    height: 1.21rem;
+    height: 60px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -240,7 +244,7 @@ header {
     background: #fff;
     button {
       width: 80%;
-      height: 0.7rem;
+      height: 35px;
       background: #3aacff;
       outline: none;
       border: 0;
@@ -248,72 +252,100 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
+      border-radius: 7px;
+      font-size:14px;
     }
   }
   .foot {
-    height:.5rem;
-    padding: 0 0.2rem;
-    font-size: 0.31rem;
+    height:30px;
+    padding: 0 10px;
+    font-size: 14px;
     background: #eee;
     color: #666;
-    line-height: .5rem;
+    line-height:30px;
   }
- 
-
-  .arrs{
-    margin-top:.2rem;
+  .arrs {
+    margin-top: 10px;
     width: 100%;
     display: flex;
-    background:#fff;
-    // border-bottom:1px solid #ccc;
-    padding:.3rem;
+    background: #fff;
+    padding: 15px;
     flex-direction: column;
-    .dealer{
+    .dealer {
       width: 100%;
-      height: 1.5rem;
-      border-bottom:1px solid #ccc;
+      border-bottom: 1px solid #ccc;
       display: flex;
       position: relative;
-      .left{
+      .left {
         width: 5%;
-        height: 100%;
-        display:flex;
+        display: flex;
         justify-content: center;
         align-items: center;
+        & > li.active:before {
+          background: #3aacff;
+          border: none;
+        }
+        & > li:before {
+          content: "";
+          display: inline-block;
+          width: 0.32rem;
+          height: 0.32rem;
+          border-radius: 50%;
+          border: 2px solid #ccc;
+          box-sizing: border-box;
+          position: absolute;
+          left: 0.05rem;
+          top: 50%;
+          -webkit-transform: translate3d(0, -50%, 0);
+          transform: translate3d(0, -50%, 0);
+        }
+        & > li.active:after {
+          content: "";
+          display: inline-block;
+          padding-top: 0.17rem;
+          padding-right: 0.1rem;
+          border: 2px solid #fff;
+          -webkit-transform: rotate(40deg) translate3d(0, -50%, 0);
+          transform: rotate(40deg) translate3d(0, -50%, 0);
+          position: absolute;
+          left: 0.07rem;
+          border-left: none;
+          border-top: none;
+          top: 47%;
+        }
       }
-      .right{
-        padding:.1rem;
-        width: 95%;
-        height: 100%;
+      .right {
+        padding: 0.1rem;
+        width: 70%;
         display: flex;
         flex-direction: column;
-        // justify-content: flex-start;
-        line-height:.45rem;
-        font-size: .25rem;
-        & p:first-child{
-          font-size: .3rem;
+        line-height: 20px;
+        font-size:14px;
+        & p:first-child {
+          font-size: 16px;
         }
-        & p:last-child{
-          color:#999;
-          font-size: .28rem;
+        & p:last-child {
+          color: #999;
+          font-size: 12px;
         }
       }
-      .line{
-        position: absolute;
-        right: .0;
-        bottom:.6rem;
-        font-size: .2rem;
-        color:#ccc;
-      }
-      .money{
+      .line {
+        font-size: 14px;
+        color: #ccc;
         position: absolute;
         right: 0;
-        top:.2rem;
-        font-size: .2rem;
+        top: 30px;
+      }
+      .money {
+        font-size: 12px;
+        position: absolute;
+        right: 0;
+        top: 10px;
       }
     }
   }
 }
+
 // 城市列表动画
 .cityList-enter-active {
   transition: all 1s ease;

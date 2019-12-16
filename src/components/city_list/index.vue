@@ -67,15 +67,15 @@ export default {
   background: #fff;
 }
 @mixin title() {
-  font-size: 0.28rem;
+  font-size: 14px;
   background: #eee;
-  line-height: .6rem;
-  padding-left: .2rem;
+  line-height: 30px;
+  padding-left: 10px;
   
 }
 @mixin List() {
   width: 100%;
-  line-height: 0.7rem;
+  line-height: 40px;
   padding-left: 20px;
 }
 .defaut_city {

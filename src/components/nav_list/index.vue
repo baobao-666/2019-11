@@ -53,17 +53,18 @@ export default {
 
 <style scoped lang="scss">
 .nav_list {
-  width: .20rem;
+  width: 15px;
   display: flex;
   flex-direction: column;
   position: fixed;
   top:50%;
   transform: translateY(-50%);
-  right: 5%;
+  right: 3%;
 }
 .nav_item {
   text-align: center;
-  line-height: .36rem;
-  font-size: .28rem;
+  line-height: 20px;
+  font-size: 12px;
+  color:#ccc;
 }
 </style>

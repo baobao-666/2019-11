@@ -84,11 +84,9 @@ let actions={
          commit("setImgScrollList",res.data)
      }
    },
+
    async getImageTypeList({ commit, state }, payload) {
-
     //接收四个参数SerialID，ImageID，Page，PageSize
-    console.log(state.Page);
-
     if (payload) {
         commit('setPage', payload);
     }

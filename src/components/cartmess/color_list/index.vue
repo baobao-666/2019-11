@@ -47,7 +47,6 @@ export default {
          this.setColorInner(inner)
          this.getColorList({id,SireID:this.$route.query.id});
          this.setWareHouseColor(false)
-
      }
  },
  created(){
