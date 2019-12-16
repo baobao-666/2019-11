@@ -9,11 +9,11 @@
     <div class="count">
       <div class="hover">
         <div class="img" @click="iuy">
-          <img :src="this.titImg" alt />
+          <img :src="FromList.Picture" alt />
         </div>
         <div class="text">
-          <p>{{list&&list.AliasName}}</p>
-          <p>{{list.list&&list.list[0].car_name}}</p>
+          <p>{{FromList&&FromList.AliasName}}</p>
+          <p>{{FromList.list&&FromList.list[0].car_name}}</p>
           <span>&gt;</span>
         </div>
       </div>
@@ -77,8 +77,6 @@ export default {
   },
   data() {
     return {
-      list: [],
-      titImg: "",
       username: "",
       phone: ""
     };
@@ -88,14 +86,14 @@ export default {
       cityblock: state => state.mess.cityblock,
       automatic: state => state.mess.automatic,
       arrs: state => state.CartMess.arrs,
-      fromList: state => state.CartMess.fromList
+      FromList: state => state.CartMess.FromList
     })
   },
   methods: {
     ...mapActions({
       getautomatic: "mess/getautomatic",
       getCityId: "CartMess/getCityId",
-      getFrom: "CartMess/getFrom"
+      getFrom:'CartMess/getFrom'
     }),
     ...mapMutations({
       setcityblock: "mess/setcityblock",
@@ -122,20 +120,24 @@ export default {
     }
   },
   created() {
-    this.$http
-      .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
-        params: { SerialID: this.$route.query.id }
-      })
-      .then(res => {
-        if (res.data.code === 1) {
-          this.titImg = res.data.data.Picture;
-          this.list = res.data.data;
-        }
-      });
+    console.log(this.FromList)
+    // this.$http
+    //   .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
+    //     params: { SerialID: this.$route.query.id }
+    //   })
+    //   .then(res => {
+    //     if (res.data.code === 1) {
+    //       this.titImg = res.data.data.Picture;
+    //       this.list = res.data.data;
+    //     }
+    //   });
+
     let SerialID = localStorage.getItem("SerialID");
     this.getautomatic();
     this.getCityId(SerialID);
     this.setarr();
+    let id = this.$route.query.id;
+    this.getFrom(id);
   }
 };
 </script>

@@ -65,6 +65,7 @@ export default {
     ...mapMutations({ backRoll: "CartMess/backRoll" }),
     //tab切换
     cut(index, item) {
+      _hmt.push(['_trackEvent', '点击', 'chf',index]);
       this.curIndex = index;
       this.backRoll(item);
       this.getCartMessSort(this.$route.query.id);

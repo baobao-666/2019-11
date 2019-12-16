@@ -1,4 +1,4 @@
-import { getCartMessSort, getCityId } from '@/services/index'
+import { getCartMessSort, getCityId ,getFrom} from '@/services/index'
 
 let state = {
     desclist: {},   // 元数据
@@ -6,7 +6,7 @@ let state = {
     year: ['全部'],     // 所有的年份
     currentList: [],    // 当前年份的车款数据 
     arrs: [],
-
+    FromList:[]
 }
 
 // 给车款排序
@@ -34,7 +34,6 @@ function formatCarList(list) {
         return item;
     })
     let newList = [];
-
     // 遍历，根据key把数据聚合一下
     list.forEach(item => {
         let index = newList.findIndex(value => value.key == item.key);
@@ -72,7 +71,6 @@ let mutations = {
             // 4.聚合key相同的车款数据
             currentList = formatCarList(currentList);
             state.currentList = currentList;
-            console.log('currentList...', currentList);
         } else {
             alert(payload.msg)
         }
@@ -82,8 +80,10 @@ let mutations = {
     },
     setarr(state, payload) {
         state.arrs = payload
+    },
+    fromList(state,payload){
+        state.FromList=payload
     }
-  
 }
 
 let actions = {
@@ -92,7 +92,6 @@ let actions = {
         if (res.code === 1) {
             commit("updateDesclist", res)
         }
-        console.log(res)
     },
     async getCityId({ commit }, payload) {
         let res = await getCityId(payload);
@@ -100,13 +99,14 @@ let actions = {
             commit('setarr', res.data.list)
         }
     },
-    // async getFrom({ commit }, id) {
-    //     let res = await getFrom(id);
-    //     console.log("res*****",res)
-    //     if (res.code === 1) {
-    //         commit('fromList', res.data.list)
-    //     }
-    // }
+    async getFrom({ commit }, id) {
+        console.log(id)
+        let res = await getFrom(id);
+        console.log("res*****", res)
+        if (res.code === 1) {
+            commit('fromList', res.data)
+        }
+    }
 }
 
 export default {
