@@ -345,7 +345,6 @@ header {
     }
   }
 }
-
 // 城市列表动画
 .cityList-enter-active {
   transition: all 1s ease;
