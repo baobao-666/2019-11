@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 
 // 引入 icon图标
-import './icon/iconAl/iconfont.css'
+import './icon/icon/iconfont.css'
 
 
 // 图片懒加载
