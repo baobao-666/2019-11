@@ -26,35 +26,28 @@ let mutations={
        state.ImgScrollList=data
     },
     setSerialID(state, payload) {
-        console.log(payload);
         state.SerialID = payload
     },
     // 修改图片分类id
     setImageId(state, payload) {
         state.ImageID = payload;
-        console.log(state.ImageID);
     },
     // 改变颜色id
     setColorId(state, payload) {
-        console.log(payload);
         state.colorName = payload.Name;
         state.colorId = payload.ColorId;
-        console.log(state.ColorId);
     },
     // 改变车系id
     setCarId(state, payload) {
         state.carId = payload;
-        console.log(state.carId);
     },
     // 修改当前分页
     setPage(state, payload) {
         state.Page = payload;
-        console.log(state.Page);
     },
     // 设置图片总数
     setCount(state, payload) {
         state.Count = payload;
-        console.log(state.Count);
     },
     // 设置当前轮播的图片下标
     setCurrent(state, payload) {

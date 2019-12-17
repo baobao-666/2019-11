@@ -51,10 +51,10 @@ export default {
 <style scoped lang="scss">
 
 .wrap_item{
-    width: 2.4rem;
-    height: 2.4rem;
-    margin-left: .07rem;
-    margin-bottom: .06rem;
+    width: 120px;
+    height: 120px;
+    margin-left: 3px;
+    margin-bottom: 2px;
     float: left;
 }
  .wrap_{
@@ -70,7 +70,7 @@ export default {
            justify-content: center;
            align-items: center;
            p{
-            margin-bottom: .2rem;
+            margin-bottom: 10px;
             color:#fff;
             }
        }
