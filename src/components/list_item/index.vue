@@ -28,6 +28,7 @@ export default {
       setFlag:"home/setFlag"
     }),
    mess(id){
+       _hmt.push(['_trackEvent', "我草", "无情",id]);
         this. getdrawerList(id)
         this.setFlag(true)
     }

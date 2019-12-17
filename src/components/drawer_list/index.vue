@@ -21,6 +21,12 @@
 import { mapState, mapMutations } from "vuex";
 
 export default {
+  data() {
+    return {
+      PageX:0,
+      offsetX:0
+    };
+  },
   computed: {
     ...mapState({
       deamerList: state => state.home.deamerList
@@ -35,9 +41,20 @@ export default {
       this.setFlag(false);
     },
     touchStart(e) {
+      // 统计属性
+      this.pageX=e.touches[0].pageX
+      this.offsetX=document.querySelector(".drawer_wrapp").offsetLeft
     },
-    touchMove(e) {},
+    touchMove(e) {
+      
+     let x=e.touches[0].pageX;
+     let left=this.offsetX+(x-this.pageX)
+     console.log(left);
+     left= left <0?0:left
+     document.querySelector(".drawer_wrapp").style.left = left+"px"
+    },
     touchEnd(e) {
+      console.log("移动结束");
       this.setFlag(false);
     }
   }
@@ -49,7 +66,7 @@ export default {
   top: 0;
   left: 25%;
   bottom: 0;
-  right: 0;
+  width: 74%;
   background: white;
   overflow-y: auto;
   z-index: 999;
