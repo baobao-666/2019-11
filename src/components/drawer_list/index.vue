@@ -46,15 +46,12 @@ export default {
       this.offsetX=document.querySelector(".drawer_wrapp").offsetLeft
     },
     touchMove(e) {
-      
      let x=e.touches[0].pageX;
      let left=this.offsetX+(x-this.pageX)
-     console.log(left);
      left= left <0?0:left
      document.querySelector(".drawer_wrapp").style.left = left+"px"
     },
     touchEnd(e) {
-      console.log("移动结束");
       this.setFlag(false);
     }
   }

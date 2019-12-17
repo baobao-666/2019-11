@@ -96,13 +96,11 @@ let actions = {
     },
     async getCityId({ commit }, payload) {
         let res = await getCityId(payload);
-        console.log(res)
         if (res.code === 1) {
             commit('setarr', res.data.list)
         }
     },
     async getFrom({ commit }, id) {
-        console.log(id)
         let res = await getFrom(id);
         if (res.code === 1) {
             commit('fromList', res.data)

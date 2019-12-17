@@ -122,7 +122,6 @@ export default {
     }
   },
   created() {
-    console.log(this.FromList)
     let carId = localStorage.getItem("SerialID");
     this.getautomatic();
     let cityId = this.cityCurrent;
