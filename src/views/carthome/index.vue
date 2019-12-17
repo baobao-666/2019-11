@@ -86,14 +86,16 @@ export default {
       cityblock: state => state.mess.cityblock,
       automatic: state => state.mess.automatic,
       arrs: state => state.CartMess.arrs,
-      FromList: state => state.CartMess.FromList
+      FromList: state => state.CartMess.FromList,
+      cityCurrent:state => state.CartMess.cityCurrent
     })
   },
   methods: {
     ...mapActions({
       getautomatic: "mess/getautomatic",
       getCityId: "CartMess/getCityId",
-      getFrom:'CartMess/getFrom'
+      getFrom:'CartMess/getFrom',
+      
     }),
     ...mapMutations({
       setcityblock: "mess/setcityblock",
@@ -121,20 +123,10 @@ export default {
   },
   created() {
     console.log(this.FromList)
-    // this.$http
-    //   .get("https://baojia.chelun.com/v2-car-getInfoAndListById.html", {
-    //     params: { SerialID: this.$route.query.id }
-    //   })
-    //   .then(res => {
-    //     if (res.data.code === 1) {
-    //       this.titImg = res.data.data.Picture;
-    //       this.list = res.data.data;
-    //     }
-    //   });
-
-    let SerialID = localStorage.getItem("SerialID");
+    let carId = localStorage.getItem("SerialID");
     this.getautomatic();
-    this.getCityId(SerialID);
+    let cityId = this.cityCurrent;
+    this.getCityId({carId,cityId});
     this.setarr();
     let id = this.$route.query.id;
     this.getFrom(id);

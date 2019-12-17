@@ -1,14 +1,14 @@
 <template>
     <div class="drawer_city" @click="setFlaging"  >
         <div class="drawer_wrap">
-            <div v-for="(item,index) in cityOneList" @click="setFlag(item.CityName)" :key="index" class="deawer_item">
+            <div v-for="(item,index) in cityOneList" @click="setFlag(item)" :key="index" class="deawer_item">
                 {{item.CityName}}  
             </div>
         </div>
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations ,mapActions} from 'vuex';
 export default {
     computed:{
  ...mapState({
@@ -21,11 +21,17 @@ export default {
      setAutomatic:"mess/setAutomatic",
      setcityblock:"mess/setcityblock"
  }),
- setFlag(name){
+ ...mapActions({
+     getCityId:'CartMess/getCityId'
+ }),
+ setFlag(item){
      this.setCityFlag(false)
      this.$router.push('/carthome')
-     this.setAutomatic(name)
-     this.setcityblock(false)
+     this.setAutomatic(item.CityName)
+     this.setcityblock(false);
+     let carId = localStorage.getItem('SerialID');
+     let cityId = item.CityID;
+     this.getCityId({carId,cityId})
  },
  setFlaging(){
      this.setCityFlag(false)

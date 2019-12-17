@@ -6,7 +6,8 @@ let state = {
     year: ['全部'],     // 所有的年份
     currentList: [],    // 当前年份的车款数据 
     arrs: [],
-    FromList:[]
+    FromList:[],
+    cityCurrent:'201' //城市北京ID
 }
 
 // 给车款排序
@@ -95,6 +96,7 @@ let actions = {
     },
     async getCityId({ commit }, payload) {
         let res = await getCityId(payload);
+        console.log(res)
         if (res.code === 1) {
             commit('setarr', res.data.list)
         }
@@ -102,7 +104,6 @@ let actions = {
     async getFrom({ commit }, id) {
         console.log(id)
         let res = await getFrom(id);
-        console.log("res*****", res)
         if (res.code === 1) {
             commit('fromList', res.data)
         }
