@@ -65,8 +65,9 @@ export default {
 .drawer_wrapp {
   position: fixed;
   top: 0;
-  left: 37%;
+  left: 25%;
   bottom: 0;
+  width: 74%;
   background: white;
   overflow-y: auto;
   z-index: 999;

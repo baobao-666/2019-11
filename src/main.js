@@ -16,6 +16,8 @@ Vue.use(VueLazyload, {
   loading: 'http://www.kedo.gov.cn/upload/resources/image/2015/11/03/144653551630115504.gif'
 })
 
+import axios from 'axios'
+Vue.prototype.$http=axios
 
 import vant from "vant"
 import 'vant/lib/index.css'
