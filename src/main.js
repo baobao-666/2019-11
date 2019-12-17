@@ -8,7 +8,6 @@ import "lib-flexible/flexible.js"
 // 引入 icon图标
 import './icon/icon/iconfont.css'
 
-Vue.prototype.$http = axios;
 
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
@@ -18,8 +17,6 @@ Vue.use(VueLazyload, {
   loading: 'http://www.kedo.gov.cn/upload/resources/image/2015/11/03/144653551630115504.gif'
 })
 
-import axios from 'axios'
-Vue.prototype.$http=axios
 
 import vant from "vant"
 import 'vant/lib/index.css'
